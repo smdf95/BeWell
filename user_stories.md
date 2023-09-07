@@ -24,7 +24,6 @@
 
 - As a user, I want to be able to view other users profiles.
 
-- As a user, I want to be able to report comments if I feel they are offensive or inappropriate.
 
 - As a user, I want to be able to edit and delete posts.
 
@@ -33,3 +32,5 @@
 - As a user, I want to be able to view my journal entries.
 
 - As a user, I want to be able to edit and delete journal entries.
+
+- As a user, I would like to receive daily zen quotes (API)
