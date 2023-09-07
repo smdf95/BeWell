@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Negative Emotions{% endblock %}
+
+
+{% block main %}
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    {{ form.negative_emotions.label }} {{ form.negative_emotions }}
+    {{ form.submit }}
+
+</form>
+
+{% endblock %}

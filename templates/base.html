@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} {% endblock %} </title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="../static/js/script.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="openMenu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+            <div class="links">
+            <div class="closeMenu">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <ul>
+                <li><a class="active" href="{{ url_for('index') }}">Journal Entry</a></li>
+                <li><a href="{{ url_for('mood') }}">Mood</a></li>
+                <li><a href="{{ url_for('index') }}">Gratitude</a></li>
+                <li><a href="{{ url_for('index') }}">My Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+    {% block main %}
+    {% endblock %}
+</body>
+</html>

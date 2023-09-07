@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+
+<div>
+    <h1>Mental Health and Well-Being</h1>
+</div>
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend>Journal Entry</legend>
+        {{ form.title }}
+        {{ form.body }}
+    </fieldset>
+    {{ form.submit }}
+
+</form>
+
+{% for entry in journal_entry %}
+    <div>
+        {{ entry.title }}
+    </div>
+{% endfor %}
+
+{% endblock %}

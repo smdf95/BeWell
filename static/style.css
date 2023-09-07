@@ -1,0 +1,47 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px;
+    
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 5px;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    flex-direction: row;
+}
+
+
+input {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+
+    
+   
+}
