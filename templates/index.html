@@ -1,28 +1,59 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
 
+
 {% block main %}
 
-<div>
-    <h1>Mental Health and Well-Being</h1>
+<script>
+    setTimeout(() => {
+        const quoteElement = document.querySelector(".quote");
+        const smiley = document.querySelector(".smiley");
+
+
+        quoteElement.classList.remove("initial-size");
+        smiley.classList.remove("initial-size");
+
+        quoteElement.classList.add("smaller-size");
+        smiley.classList.add("smaller-size");
+    }, 2000);
+</script>
+
+<div class="quote initial-size">
+    <div class="smiley initial-size">
+        <img src="https://freesvg.org/img/Button---Happy.png" alt="Smiley Face">
+    </div>
+    <p><strong>"{{ quote }}"</strong><small> <br>- {{ author }}</small></p>
 </div>
 
-<form method="POST" action="">
-    {{ form.hidden_tag() }}
-    <fieldset class="form-group">
-        <legend>Journal Entry</legend>
-        {{ form.title }}
-        {{ form.body }}
-    </fieldset>
-    {{ form.submit }}
 
-</form>
-
-{% for entry in journal_entry %}
-    <div>
-        {{ entry.title }}
+<h1 class="centre">Welcome to BeWell</h1>
+<div class="trio">
+    <section><a href="{{ url_for('relief') }}">
+        <h2>Find Relief</h2>
+        <p>If you are in need of relief from unwanted feelings, we can help. Just select the symptoms that you are experiencing and we will provide you with appropriate resources to help you find a state of calm.</p></a>
+    </section>
+    <section><a href="{{ url_for('gratitude') }}">
+        <h2>Give Thanks</h2>
+        <p>The power of gratitude is widely researched and proven to help bring positivity and well-being into one's life. Tell our community what you are grateful for today</p></a>
+    </section>
+    <section><a href="{{ url_for('resources') }}">
+        <h2>Explore Resources</h2>
+        <p>Whether you are looking to create a self-care plan or just curious, our resources page will provide you with all the proven methods and exercises for good mental health.</p></a>
+    </section>
+</div>
+<div class="form-centre">
+    <div class="form-box">
+        <h3>How are you feeling?</h3>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="mood">
+                {{ form.mood }}
+                {{ form.submit }}
+            </div>
+        </form>
     </div>
-{% endfor %}
+</div>
+
 
 {% endblock %}

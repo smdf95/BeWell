@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Gratitude{% endblock %}
+
+
+{% block main %}
+
+<h1>Gratitude Journal</h1>
+
+<div class="explanation">
+    <p>Gratitude is more than a polite gesture; it's a scientifically-backed tool for well-being. Research shows that practicing gratitude can boost mood, reduce stress, and increase life satisfaction. It activates brain regions linked to positivity and fosters stronger social connections.<br><br> In a busy world, gratitude offers a simple yet impactful way to enhance our mental and emotional health.</p>
+</div>
+
+<h2>Share what you're grateful for with the community</h2>
+<form class="gratitude_form" method="POST" action="">
+    {{ form.hidden_tag() }}
+        {{ form.name(placeholder="Name") }}
+        {{ form.gratitude(placeholder="What are you grateful for?") }}
+    {{ form.submit }}
+</form>
+
+<div class="gratitude_journal">
+{% for entry in gratitude_journal %}
+    {% if entry %}
+        <div class="gratitude_entry">
+            <div class="name">{{ entry.name }}</div> {{ entry.gratitude }}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+{% endblock %}

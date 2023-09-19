@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Resource Information{% endblock %}
+
+
+{% block main %}
+<div class="resource_image">
+    <img src="{{ resource.images }}" alt="{{ resource.name }}">
+    <div class="description">
+        <h1>{{ resource.name }}</h1>
+        <p>{{ resource.description }}</p>
+        <p> {{ resource.extra_description }}</p>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

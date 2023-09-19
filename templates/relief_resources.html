@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Resources{% endblock %}
+
+{% block main %}
+
+<div>
+    <h1>Resources</h1>
+</div>
+
+
+{% for feeling in selected_feelings %}
+
+
+<h2>Resources for {{ feeling }}</h2>
+<div class="resources">
+    {% for resource in filtered_items %}
+        {% if feeling.lower() in resource["symptoms"].lower()%}
+        <div class="images">
+            <h3>{{ resource.name }}</h3>
+            <img src="{{ resource.images }}" alt="{{ resource.name }}">
+            <p>{{ resource.description}} </p>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}

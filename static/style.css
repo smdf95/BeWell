@@ -1,47 +1,355 @@
+/* General Style */
+
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    
+}
+body {
+    background-image: linear-gradient(#EE79FF, #AA43EA, #5F33FF);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    padding: 0 50px;
+    
 }
 
 nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding: 30px;
-    
+    padding: 30px 70px;
 }
 
 nav ul li {
     display: inline-block;
     padding: 5px;
+    font-size: 18px;
 }
 
+li {
+    list-style: none;
+    
+}
 
 
 a {
     text-decoration: none;
-    color: black;
+    color: #FFFFFF    
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-shadow: #777777 0px 0px 5px;
 
 }
 
-form {
+h1 {
+    padding-left: 50px;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+h2:first-of-type {
+    margin-top: 50px;
+}
+
+.centre {
+    text-align: center;
+    color: #FFFFFF;
+    padding-left: 0;
+    margin-top: 50px;
+}
+
+/* Forms */
+
+.form-box {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
-    padding: 30px;
     flex-direction: row;
+    margin: 30px;
+    background-image: linear-gradient(#CC43EF, #af43ff);
+    border-radius: 13px;
+    width: 400px;
+    padding: 20px
+}
+
+.form-centre {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 0;
 }
 
 
 input {
-    padding: 5px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 9px;
+    border: 1px solid black;
+    padding: 5px; 
+    font-size: 16px;
+    background-color: #ffccFF;
+    margin-top: 20px;
+   
+}
+
+/* Div Classes */
+
+.images img {
+    height: 100px;
+    border-radius: 180px;
+
+}
+
+.resources {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 50px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.images {
+    margin: 20px;
+    background-image: linear-gradient(#EE79FF, #AA43EA, #5F33FF);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    color: #FFFFFF;
+}
+
+.images p, .images h3 {
+    text-align: center;
+    margin: 10px
+
+}
+
+.images h3 {
+    color: #000000;
+}
+
+/* Index */
+
+@keyframes easeInOutCubic {
+    0%, 100% {
+        transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    50% {
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+}
+
+.smiley {
+    transition: all 3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.smiley.initial-size img {
+    height: 200px;
+}
+
+.smiley.smaller-size img {
+    height: 50px;
+    transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.quote {
+    transition: all 3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.quote.initial-size {
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.quote.initial-size p {
+    padding-top: 70px;
+}
+
+.quote.smaller-size {
+    height: 30vh;
+    padding: 20px 20px 50px 20px;
+    text-align: center;
+    font-size: 30px;
+    transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.smaller-size p {
+    padding-top: 20px;
+    transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+
+.smiley {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.trio {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin: 50px 0;
+
+}
+
+.trio section {
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 20px; 
+    text-align: center;
+    width: 25%;
+    transition: all 0.2s ease-in-out;
+}
+
+.trio section a {
+    color: #000000;
+}
+
+.trio section:hover {
+    background-color: rgb(255, 255, 255, 0.6);
+    box-shadow: 0 0 10px 2px rgb(255, 255, 255, 0.6);
+    transition: all 0.2s ease-in-out;
+}
+
+.trio h2 {
+    margin-top: 0;
+    padding-bottom: 20px;
+}
+
+.explanation {
+    margin: 50px 100px;
+    padding: 0 100px;
+}
+
+
+
+/* Relief Form */
+
+.custom-checkbox {
+    display: inline-block;
+    cursor: pointer;
     margin: 5px;
     border-radius: 5px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
+    overflow: hidden;
+}
 
-    
-   
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .custom-checkbox-label, .mood input[type="radio"]:checked + label {
+    background-image: linear-gradient(#EE43FF, #CC43EF);
+    color: #FFFFFF;
+    box-shadow: #FFFFFF 0px 0px 10px;
+}
+
+/* Index Form */
+
+.mood ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mood input[type="radio"] {
+
+    display: none;
+}
+
+/* Index and Relief Form */
+
+.mood label, .custom-checkbox-label {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 9px;
+    box-shadow: #FF99FF 0px 0px 7px;
+    background-image: linear-gradient(#EE43FF, #CC43EF);
+    margin: 5px;
+    cursor: pointer;
+}
+
+/* Resource_Info */
+
+.description h1 {
+    padding: 0;
+}
+
+.description p {
+    margin-top: 20px;
+}
+
+.description {
+    border-radius: 50px;
+    background-image: linear-gradient(#EE43FF, #7F33FF);
+    padding: 20px 100px;
+    margin-left: 50px;
+    color: #FFFFFF;
+    text-shadow: #777777 0px 0px 5px;
+}
+
+.resource_image img{
+    height: 300px;
+    border-radius: 180px;
+}
+
+.resource_image {
+    display: flex;
+    margin: 50px 100px 50px 50px;
+
+}
+
+/* Gratitude */
+
+.gratitude_entry {
+    border-radius: 20px;
+    background-image: linear-gradient(#1ED6C4, #2BB8BD);
+    padding: 20px 100px;
+    display: flex;
+    width: 30%;
+    margin: 20px 100px;
+    box-shadow: 0 0 10px 5px rgb(0, 0, 0, 0.4)
+}
+
+.gratitude_entry:nth-of-type(2n) {
+    border-radius: 20px;
+    background-image: linear-gradient(#EE43FF, #7F33FF);
+    padding: 20px 100px;
+    display: flex;
+    margin-left: 20%;
+}
+
+.gratitude_form {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    gap: 20px;
+}
+
+.gratitude_form input:nth-of-type(3) {
+    width: 250px;
+}
+
+.name {
+    padding-right: 20px;
+    font-size: 20px;
+    font-weight: 700;
 }
