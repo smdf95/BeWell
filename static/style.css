@@ -7,7 +7,7 @@
     
 }
 body {
-    background-image: linear-gradient(#EE79FF, #AA43EA, #5F33FF);
+    background-image: linear-gradient(#AA43EA, #EE79FF, #5F33FF);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -17,10 +17,17 @@ main {
     
 }
 
+footer {
+    color: #FFFFFF;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 30px 70px;
 }
 
@@ -46,7 +53,15 @@ a {
     font-weight: 600;
     color: #FFFFFF;
     text-shadow: #777777 0px 0px 5px;
+    text-align: left;
+}
 
+.links {
+    text-align: center;
+}
+
+.login {
+    text-align: right;
 }
 
 h1 {
@@ -66,6 +81,7 @@ h2:first-of-type {
     color: #FFFFFF;
     padding-left: 0;
     margin-top: 50px;
+    font-size: 50px;
 }
 
 /* Forms */
@@ -141,6 +157,17 @@ input {
 
 .images h3 {
     color: #000000;
+}
+
+.reveal {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* Index */
@@ -238,18 +265,22 @@ input {
 .explanation {
     margin: 50px 100px;
     padding: 0 100px;
+    font-size: 17px;
 }
+
+
 
 
 
 /* Relief Form */
 
 .custom-checkbox {
-    display: inline-block;
+    display: flex;
     cursor: pointer;
     margin: 5px;
     border-radius: 5px;
     overflow: hidden;
+
 }
 
 .custom-checkbox input[type="checkbox"] {
@@ -259,7 +290,19 @@ input {
 .custom-checkbox input[type="checkbox"]:checked + .custom-checkbox-label, .mood input[type="radio"]:checked + label {
     background-image: linear-gradient(#EE43FF, #CC43EF);
     color: #FFFFFF;
-    box-shadow: #FFFFFF 0px 0px 10px;
+    box-shadow: #FFFFFF 0px 0px 5px;
+}
+
+.relief {
+    display: flex;
+    justify-self: center;
+    margin: 20px 20%;
+}
+
+.relief ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Index Form */
@@ -274,19 +317,33 @@ input {
     display: none;
 }
 
+#moodForm h3 {
+    padding: 10px 0 30px 0;
+}
 /* Index and Relief Form */
 
 .mood label, .custom-checkbox-label {
     display: inline-block;
     padding: 5px;
     border-radius: 9px;
-    box-shadow: #FF99FF 0px 0px 7px;
+    box-shadow: #FF99FF 0px 0px 3px;
     background-image: linear-gradient(#EE43FF, #CC43EF);
     margin: 5px;
     cursor: pointer;
 }
 
+.negative, .positive, .okay, .neg, .pos {
+    display: none;
+}
+
 /* Resource_Info */
+
+.description {
+    background-image: linear-gradient(#EE43FF, #7F33FF);
+    padding: 20px 100px;
+    border-radius: 50px;
+
+}
 
 .description h1 {
     padding: 0;
@@ -296,10 +353,11 @@ input {
     margin-top: 20px;
 }
 
-.description {
-    border-radius: 50px;
-    background-image: linear-gradient(#EE43FF, #7F33FF);
-    padding: 20px 100px;
+.resource_info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
     margin-left: 50px;
     color: #FFFFFF;
     text-shadow: #777777 0px 0px 5px;
@@ -316,13 +374,67 @@ input {
 
 }
 
+.resource_url {
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(200, 200, 200, 0.2));
+    margin: 30px 100px;
+    padding: 20px 100px;
+}
+
+iframe {
+    border-radius: 10px;
+    margin: 20px 20%;
+}
+
+.resource_url h2 {
+    padding: 0;
+    margin: 0;
+    color: #FFFFFF;
+
+}
+
+.resource_url ul li {
+    padding: 20px 0;
+    color: #FFFFFF;
+}
+
+.resource_url ul li a {
+    color: #EE43FF;
+    text-shadow:
+        0.05em 0 2px #662299,
+        0 0.05em 2px #662299,
+        -0.05em 0 2px #662299,
+        0 -0.05em 2px #662299,
+        -0.05em -0.05em 2px #662299,
+        -0.05em 0.05em 2px #662299,
+        0.05em -0.05em 2px #662299,
+        0.05em 0.05em 2px #662299;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+.resource_url ul li a:hover {
+    text-shadow:
+        0.05em 0 4px #662299,
+        0 0.05em 4px #662299,
+        -0.05em 0 4px #662299,
+        0 -0.05em 4px #662299,
+        -0.05em -0.05em 4px #662299,
+        -0.05em 0.05em 4px #662299,
+        0.05em -0.05em 4px #662299,
+        0.05em 0.05em 4px #662299;
+    transition: all 0.1s ease-in-out;
+}
+
 /* Gratitude */
 
 .gratitude_entry {
+    position: relative;
     border-radius: 20px;
     background-image: linear-gradient(#1ED6C4, #2BB8BD);
     padding: 20px 100px;
     display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     width: 30%;
     margin: 20px 100px;
     box-shadow: 0 0 10px 5px rgb(0, 0, 0, 0.4)
@@ -341,15 +453,53 @@ input {
     justify-content: center;
     flex-direction: row;
     text-align: center;
-    gap: 20px;
+    column-gap: 20px;
 }
 
-.gratitude_form input:nth-of-type(3) {
+.gratitude_form input:nth-of-type(2) {
+    margin-top: 0;
     width: 250px;
+    height: 40px;
+    align-self: center;
+}
+
+.entry {
+    font-size: 19px;
+    margin-bottom: 10px;
 }
 
 .name {
-    padding-right: 20px;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 15px;
+    
+    font-style: italic;
+    align-self: flex-end;
+    margin-top: auto; /* Push it to the bottom */
+    font-size: 15px;
+}
+
+.delete {
+    align-self: flex-end;
+    font-size: 15px;
+
+}
+
+.neat-submit-button {
+    background-color: #F9F9F9;
+    color: #000000;
+    border: none;
+    align-self: center;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: #000000 0 0 2px;
+}
+
+
+.neat-submit-button:hover {
+    background-color: #2BB8BD;
+}
+
+.neat-submit-button:active {
+    transform: translateY(2px);
 }

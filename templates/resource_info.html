@@ -6,14 +6,27 @@
 {% block main %}
 <div class="resource_image">
     <img src="{{ resource.images }}" alt="{{ resource.name }}">
-    <div class="description">
-        <h1>{{ resource.name }}</h1>
-        <p>{{ resource.description }}</p>
-        <p> {{ resource.extra_description }}</p>
+    <div class="resource_info">
+        <div class="description">
+            <h1>{{ resource.name }}</h1>
+            <p>{{ resource.description }}</p>
+            <p> {{ resource.extra_description }}</p>
+        </div>
     </div>
-
-
+    
+    
 </div>
 
+<div class="resource_url">
+    <h2>Resources</h2>
+    <ul>
+        {{ resource.sources|safe }}
+
+    </ul>
+</div>
+{% if resource.url %}
+    <h3>Try Now</h3>
+    {{ resource.url|safe }}
+{% endif %}
 
 {% endblock %}

@@ -28,32 +28,133 @@
 
 
 <h1 class="centre">Welcome to BeWell</h1>
-<div class="trio">
+<div class="trio reveal">
     <section><a href="{{ url_for('relief') }}">
         <h2>Find Relief</h2>
         <p>If you are in need of relief from unwanted feelings, we can help. Just select the symptoms that you are experiencing and we will provide you with appropriate resources to help you find a state of calm.</p></a>
     </section>
     <section><a href="{{ url_for('gratitude') }}">
         <h2>Give Thanks</h2>
-        <p>The power of gratitude is widely researched and proven to help bring positivity and well-being into one's life. Tell our community what you are grateful for today</p></a>
+        <p>The power of gratitude is widely researched and proven to help bring positivity and well-being into one's life. Tell our community what you are grateful for today and start reaping the benefits of a more positive lifestyle.</p></a>
     </section>
     <section><a href="{{ url_for('resources') }}">
         <h2>Explore Resources</h2>
-        <p>Whether you are looking to create a self-care plan or just curious, our resources page will provide you with all the proven methods and exercises for good mental health.</p></a>
+        <p>Whether you are looking to create a self-care plan or just curious, our resources page will provide you with all the proven methods and exercises for a healthier mental well-being.</p></a>
     </section>
 </div>
-<div class="form-centre">
+<div class="form-centre reveal">
     <div class="form-box">
-        <h3>How are you feeling?</h3>
-        <form method="POST" action="">
+        <form id="moodForm" method="POST" action="">
+            <h3>How are you feeling?</h3>
             {{ form.hidden_tag() }}
             <div class="mood">
                 {{ form.mood }}
                 {{ form.submit }}
             </div>
         </form>
+        <h3 class="neg">Sorry to hear that. Would you like to find some relief?</h3>
+        <h3 class="okay">Would you like to find some relief?</h3>
+        <form class="negative" method="POST" action="">
+            {{ negative_form.hidden_tag()}}
+            <div class="mood">
+                {{negative_form.neg_selection }}
+                {{ negative_form.submit }}
+            </div>
+
+        </form>
+        
+
+        <h3 class="pos">That's great! Would you like to post in the community gratitude journal?</h3>
+        <form class="positive" method="POST" action="">
+            {{ positive_form.hidden_tag()}}
+            <div class="mood">
+                {{ positive_form.pos_selection }}
+                {{ positive_form.submit }}
+            </div>
+
+        </form>
     </div>
+    
 </div>
+
+<script>
+var form = document.getElementById('moodForm');
+document.addEventListener('DOMContentLoaded', function () {
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var moodInput = form.elements['mood'];
+            var mood = moodInput.value;
+            console.log("Selected mood: " + mood); // Add this line for debugging
+            if (mood === 'Awful' || mood === 'Not Good') {
+                negativeSelection(event);
+            } else if (mood === "Good" || mood === "Amazing") {
+                positiveSelection(event);
+            } else {
+                okaySelection(event);
+            }
+            
+        });
+    }
+});
+
+function negativeSelection(event) {
+    form.style.display = 'none';
+    var negativeForm = document.getElementsByClassName('negative')[0];
+    var negativeHeading = document.getElementsByClassName('neg')[0];
+    negativeForm.style.display = 'block';
+    negativeHeading.style.display = 'block';
+    negativeForm.addEventListener('submit', function (event) {
+        if (negativeForm) {
+            var negativeInput = negativeForm.elements['neg_selection'];
+            negativeMood = negativeInput.value;
+            if (negativeInput.value === 'No') {
+                event.preventDefault();
+                negativeForm.style.display = 'none';
+            } 
+
+        }
+    });
+}
+
+function okaySelection(event) {
+    form.style.display = 'none';
+    var negativeForm = document.getElementsByClassName('negative')[0];
+    var okayHeading = document.getElementsByClassName('okay')[0];
+    negativeForm.style.display = 'block';
+    okayHeading.style.display = 'block';
+    okayForm.addEventListener('submit', function (event) {
+        if (okayForm) {
+            var negativeInput = negativeForm.elements['neg_selection'];
+            negativeMood = negativeInput.value;
+            if (negativeInput.value === 'No') {
+                event.preventDefault();
+                negativeForm.style.display = 'none';
+            } 
+
+        }
+    });
+}
+
+function positiveSelection(event) {
+    form.style.display = 'none';
+    var positiveForm = document.getElementsByClassName('positive')[0];
+    var positiveHeading = document.getElementsByClassName('pos')[0];
+    positiveForm.style.display = 'block';
+    positiveHeading.style.display = 'block';
+    positiveForm.addEventListener('submit', function (event) {
+        if (positiveForm) {
+            var positiveInput = positiveForm.elements['pos_selection'];
+            positiveMood = positiveInput.value;
+            if (positiveInput.value === 'No') {
+                event.preventDefault();
+                positiveForm.style.display = 'none';
+            } 
+
+        }
+    });
+}
+</script>
 
 
 {% endblock %}

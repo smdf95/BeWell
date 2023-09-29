@@ -4,21 +4,24 @@
 
 {% block main %}
 <h1>Find Some Relief</h1>
-<h3>Take a moment to observe what is going on inside your body and mind. <br>What are you feeling right now?</h3>
-<div class="form-box">
+<div class="explanation">
+    <p>If you are in need of relief from overwhelming emotional or physical sensations, select all relevant symptoms below and we will provide you with proven methods and exercises to help combat the specific sensations.</p>
+</div>
+<h2>Take a moment to observe what is going on inside your body and mind. <br>What are you feeling right now?</h2>
+<div class="relief">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <ul>
-            {% for choice, label in form.relief.choices %}
-                <li>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="{{ form.relief.name }}" value="{{ choice }}">
-                        <span class="custom-checkbox-label">{{ label }}</span>
-                    </label>
-                </li>
-            {% endfor %}
-        </ul>
-        {{ form.submit }}
-    </form>
-</div>
+                {% for choice, label in form.relief.choices %}
+                    <li>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="{{ form.relief.name }}" value="{{ choice }}">
+                            <span class="custom-checkbox-label">{{ label }}</span>
+                        </label>
+                    </li>
+                {% endfor %}
+            </ul>
+            {{ form.submit }}
+        </form>
+    </div>
 {% endblock %}

@@ -16,11 +16,13 @@
 <div class="resources">
     {% for resource in filtered_items %}
         {% if feeling.lower() in resource["symptoms"].lower()%}
-        <div class="images">
-            <h3>{{ resource.name }}</h3>
-            <img src="{{ resource.images }}" alt="{{ resource.name }}">
-            <p>{{ resource.description}} </p>
-        </div>
+        <a href="{{ url_for('resource_info', id=resource.id) }}">
+            <div class="images">
+                <h3>{{ resource.name }}</h3>
+                <img src="{{ resource.images }}" alt="{{ resource.name }}">
+                <p>{{ resource.description}} </p>
+            </div>
+        </a>
         {% endif %}
     {% endfor %}
 </div>
