@@ -179,179 +179,181 @@ def create_app():
         print("After initializing session:")
         print(session)
 
-    @app.route('/redirect_login')
-    def redirect_login():
-        session['previous_page'] = request.referrer
-        return redirect(url_for('login'))
+    return app
+
+app = create_app()
+
+@app.route('/redirect_login')
+def redirect_login():
+    session['previous_page'] = request.referrer
+    return redirect(url_for('login'))
+
+@app.route('/redirect_register')
+def redirect_register():
+    session['previous_page'] = request.referrer
+    return redirect(url_for('register'))
+
+@app.route('/redirect_logout')
+def redirect_logout():
+    session['previous_page'] = request.referrer
+    return redirect(url_for('login'))
+
+@app.route("/", methods=['GET', 'POST'])
+@app.route("/index", methods=['GET', 'POST'])
+def index():
     
-    @app.route('/redirect_register')
-    def redirect_register():
-        session['previous_page'] = request.referrer
-        return redirect(url_for('register'))
+
+    form = MoodForm()
+    negative_form = NegativeForm()
+    positive_form = PositiveForm()
     
-    @app.route('/redirect_logout')
-    def redirect_logout():
-        session['previous_page'] = request.referrer
-        return redirect(url_for('login'))
+    negative_mood = negative_form.neg_selection.data
+    if negative_form.validate_on_submit():
+        if negative_mood == "Yes":
+            print(negative_mood)
+            return redirect(url_for("relief"))
+    
+    
+    
+    if positive_form.validate_on_submit():
+        print("okay")
+        if positive_form.pos_selection.data == "Yes":
+            print(positive_form.pos_selection.data)
+            return redirect(url_for("gratitude"))
+    else:
+        print("Oops")
 
-    @app.route("/", methods=['GET', 'POST'])
-    @app.route("/index", methods=['GET', 'POST'])
-    def index():
-        
-
-        form = MoodForm()
-        negative_form = NegativeForm()
-        positive_form = PositiveForm()
-        
-        negative_mood = negative_form.neg_selection.data
-        if negative_form.validate_on_submit():
-            if negative_mood == "Yes":
-                print(negative_mood)
-                return redirect(url_for("relief"))
-        
-        
-        
-        if positive_form.validate_on_submit():
-            print("okay")
-            if positive_form.pos_selection.data == "Yes":
-                print(positive_form.pos_selection.data)
-                return redirect(url_for("gratitude"))
-        else:
-            print("Oops")
-
-        return render_template("index.html", form=form, negative_form=negative_form, positive_form=positive_form, quote=quote, author=author)
+    return render_template("index.html", form=form, negative_form=negative_form, positive_form=positive_form, quote=quote, author=author)
 
 
 
-    @app.route('/login', methods=['GET', 'POST'])
-    def login():
-        if 'logged_in' not in session:
-            session['logged_in'] = False
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if 'logged_in' not in session:
+        session['logged_in'] = False
 
-        form = LoginForm()
-        if form.validate_on_submit():
-            username = form.username.data
-            password = form.password.data
-            for account in accounts:
-                if account['username'] == username and account['password'] == password:
-                    session['logged_in'] = True
-                    session['user'] = account['id']
-                    previous_page = session.get('previous_page')
-                    print("previous_page:", previous_page)
-                    if previous_page:
-                        return redirect(previous_page)
-                    else:
-                        return redirect(url_for('index'))
-            # If no matching account is found, return an error message
-            return render_template('login.html', form=form, error='Invalid username or password')
-        return render_template('login.html', form=form)
-
-    @app.route('/register', methods=['GET', 'POST'])
-    def register():
-        form = RegistrationForm()
-        if form.validate_on_submit():
-            if form.username.data in accounts:
-                return redirect(url_for("login"))
-            else:
-                accounts.append({
-                    "id": len(accounts),
-                    "username": form.username.data,
-                    "password": form.password.data
-                })
+    form = LoginForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        for account in accounts:
+            if account['username'] == username and account['password'] == password:
                 session['logged_in'] = True
-                session['user'] = len(accounts) - 1
+                session['user'] = account['id']
                 previous_page = session.get('previous_page')
                 print("previous_page:", previous_page)
                 if previous_page:
                     return redirect(previous_page)
                 else:
                     return redirect(url_for('index'))
-        return render_template("register.html", form=form)
+        # If no matching account is found, return an error message
+        return render_template('login.html', form=form, error='Invalid username or password')
+    return render_template('login.html', form=form)
 
-    @app.route('/logout')
-    def logout():
-        session['logged_in'] = False
-        session['user'] = None
-        previous_page = session.get('previous_page')
-        print("previous_page:", previous_page)
-        if previous_page:
-            return redirect(previous_page)
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        if form.username.data in accounts:
+            return redirect(url_for("login"))
         else:
-            return redirect(url_for('index'))
+            accounts.append({
+                "id": len(accounts),
+                "username": form.username.data,
+                "password": form.password.data
+            })
+            session['logged_in'] = True
+            session['user'] = len(accounts) - 1
+            previous_page = session.get('previous_page')
+            print("previous_page:", previous_page)
+            if previous_page:
+                return redirect(previous_page)
+            else:
+                return redirect(url_for('index'))
+    return render_template("register.html", form=form)
 
-    @app.route('/resources/')
-    def resources():
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    session['user'] = None
+    previous_page = session.get('previous_page')
+    print("previous_page:", previous_page)
+    if previous_page:
+        return redirect(previous_page)
+    else:
+        return redirect(url_for('index'))
 
-        return render_template("resources.html", resource_list=resource_list)
+@app.route('/resources/')
+def resources():
 
-    @app.route('/resource/<id>')
-    def resource_info(id):
-        return render_template("resource_info.html", resource=resource_list[int(id)], id=id)
+    return render_template("resources.html", resource_list=resource_list)
+
+@app.route('/resource/<id>')
+def resource_info(id):
+    return render_template("resource_info.html", resource=resource_list[int(id)], id=id)
 
 
-    @app.route("/gratitude", methods=['GET', 'POST'])
-    def gratitude():
-        form = GratitudeForm()
-        username = session.get('user')
-        current_date = date.today()
-        formatted_date = current_date.strftime("%d/%m")
-        if form.validate_on_submit():
-            key = len(gratitude_journal) + 1
-            id = username
-            name = accounts[username]['username']
-            gratitude = form.gratitude.data
+@app.route("/gratitude", methods=['GET', 'POST'])
+def gratitude():
+    form = GratitudeForm()
+    username = session.get('user')
+    current_date = date.today()
+    formatted_date = current_date.strftime("%d/%m")
+    if form.validate_on_submit():
+        key = len(gratitude_journal) + 1
+        id = username
+        name = accounts[username]['username']
+        gratitude = form.gratitude.data
 
-            gratitude_journal[key] = {
-                "id": id,
-                "date": formatted_date,
-                "name": name,
-                "gratitude": gratitude
-            }
+        gratitude_journal[key] = {
+            "id": id,
+            "date": formatted_date,
+            "name": name,
+            "gratitude": gratitude
+        }
 
-            return redirect(url_for("gratitude"))
+        return redirect(url_for("gratitude"))
+    
+    return render_template('gratitude.html', gratitude_journal=gratitude_journal, form=form)
+
+
+
+
+@app.route('/delete/<int:key>')
+def delete(key):
+    if key in gratitude_journal:
+        del gratitude_journal[key]
+        return redirect(url_for("gratitude"))
         
-        return render_template('gratitude.html', gratitude_journal=gratitude_journal, form=form)
-    
+        
 
+filtered_items = []  
 
-    
-    @app.route('/delete/<int:key>')
-    def delete(key):
-        if key in gratitude_journal:
-            del gratitude_journal[key]
-            return redirect(url_for("gratitude"))
-            
-            
+@app.route("/relief", methods=['GET', 'POST'])
+def relief():
+    form = Relief()
+    global filtered_items
 
-    filtered_items = []  
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            selected_feelings = form.relief.data
 
-    @app.route("/relief", methods=['GET', 'POST'])
-    def relief():
-        form = Relief()
-        global filtered_items
+            filtered_items = []
 
-        if request.method == 'POST':
-            if form.validate_on_submit():
-                selected_feelings = form.relief.data
+            for resource in resource_list:
+                if any(feeling.lower() in resource["symptoms"].lower() for feeling in selected_feelings):
+                    filtered_items.append({
+                        "id": resource["id"],
+                        "name": resource["name"],
+                        "images": resource["images"],
+                        "url": resource["url"],
+                        "symptoms": resource["symptoms"],
+                        "description": resource["description"]
+                    })
 
-                filtered_items = []
+            return render_template('relief_resources.html', filtered_items=filtered_items, selected_feelings=selected_feelings)
 
-                for resource in resource_list:
-                    if any(feeling.lower() in resource["symptoms"].lower() for feeling in selected_feelings):
-                        filtered_items.append({
-                            "id": resource["id"],
-                            "name": resource["name"],
-                            "images": resource["images"],
-                            "url": resource["url"],
-                            "symptoms": resource["symptoms"],
-                            "description": resource["description"]
-                        })
-
-                return render_template('relief_resources.html', filtered_items=filtered_items, selected_feelings=selected_feelings)
-
-        return render_template('relief.html', form=form)
-    return app
-
+    return render_template('relief.html', form=form)
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True)
