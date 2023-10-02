@@ -43,6 +43,7 @@ author = get_author()
 
 gratitude_journal = {
     1: {
+        "id": 0,
         "date": "20/09",
         "name": "Shane",
         "gratitude": "I am grateful for the sunny weather!",
