@@ -12,9 +12,7 @@ import requests
 def create_app():
     app = Flask(__name__)
     
-    app.config['SESSION_TYPE'] = 'filesystem'  # Store session data on the server's filesystem
-    app.config['SESSION_PERMANENT'] = False  # Session data is not permanent
-    app.config['SESSION_USE_SIGNER'] = True
+    
     app.config["SECRET_KEY"] = "mysecretkey"
 
     Session(app)
