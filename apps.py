@@ -321,7 +321,7 @@ def create_app():
             del gratitude_journal[key]
             return redirect(url_for("gratitude"))
             
-              
+            
 
     filtered_items = []  
 
@@ -351,3 +351,7 @@ def create_app():
 
         return render_template('relief.html', form=form)
     return app
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(debug=True, port=8000)
