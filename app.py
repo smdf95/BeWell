@@ -15,7 +15,7 @@ def create_app():
     
     app.config["SECRET_KEY"] = "mysecretkey"
 
-    Session(app)
+   
 
     response = requests.get("https://zenquotes.io/api/random/")
 
@@ -168,14 +168,7 @@ def create_app():
 
     
 
-    with app.test_request_context():
-        print("Before clearing session:")
-        print(session)
-        session.clear()
-        session['logged_in'] = False
-        session['user'] = None
-        print("After initializing session:")
-        print(session)
+    
 
     @app.route('/redirect_login')
     def redirect_login():
