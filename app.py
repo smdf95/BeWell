@@ -296,6 +296,8 @@ def resource_info(id):
 
 @app.route("/gratitude", methods=['GET', 'POST'])
 def gratitude():
+    if 'logged_in' not in session:
+        session['logged_in'] = False
     form = GratitudeForm()
     username = session.get('user')
     current_date = date.today()
