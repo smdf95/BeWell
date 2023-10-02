@@ -172,6 +172,7 @@ accounts = [
 ]
 
 
+app = create_app()
 
 with app.test_request_context():
     print("Before clearing session:")
@@ -182,7 +183,6 @@ with app.test_request_context():
     print("After initializing session:")
     print(session)
 
-app = create_app()
 
 @app.route('/redirect_login')
 def redirect_login():
