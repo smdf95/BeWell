@@ -27,7 +27,7 @@ footer {
 
 nav {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     padding: 30px 70px;
 }
 
@@ -36,7 +36,7 @@ nav .openMenu, nav .closeMenu {
 }
 
 .openMenu i, .closeMenu i {
-    color: #222222;
+    color: #FFFFFF;
 }
 
 nav ul li {
@@ -65,11 +65,19 @@ a {
 }
 
 .links {
+    display: flex;
     text-align: center;
+    justify-content: space-between;
 }
 
+.menu {
+    justify-self: center;
+}
+
+
+
 .login {
-    text-align: right;
+    justify-self: flex-end;
 }
 
 h1 {
@@ -92,42 +100,21 @@ h2:first-of-type {
     font-size: 50px;
 }
 
-/* Forms */
-
-.form-box {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 30px;
-    background-image: linear-gradient(#CC43EF, #af43ff);
+.alert {
+    color: #FFFFFF;
+    background-color: rgb(20, 20, 20, 0.4);
     border-radius: 13px;
-    width: 400px;
-    padding: 20px
-}
-
-.form-centre {
-    display: flex;
-    justify-content: center;
-}
-
-form {
-    display: inline-block;
+    padding: 10px;
+    margin-bottom: 10px;
     text-align: center;
-    padding: 20px 0;
 }
 
-
-input {
-    display: inline-block;
-    text-align: center;
-    border-radius: 9px;
-    border: 1px solid black;
-    padding: 5px; 
-    font-size: 16px;
-    background-color: #ffccFF;
-    margin-top: 20px;
-   
+.alert-success {
+    color: #FFFFFF;
+    background-color: #43CCEF;
+    border-radius: 13px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 /* Div Classes */
@@ -279,6 +266,55 @@ input {
 }
 
 
+/* Forms */
+
+.form-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 30px;
+    /* background-image: linear-gradient(#1ED6C4, #2BB8BD); */
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0 0 20px 2px #000000;
+    width: 400px;
+    padding: 50px
+}
+
+.form-centre {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+input {
+    display: inline-block;
+    text-align: center;
+    border-radius: 9px;
+    border: none;
+    padding: 5px; 
+    font-size: 16px;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 0 5px #444444;
+    margin-top: 20px;
+    cursor: pointer;
+   
+}
+
+input:focus {
+    background-color: #E1E1E1;
+
+    box-shadow: 
+        0px 0px 8px #000000,
+        inset 0 0 3px #000000;
+}
 
 
 
@@ -304,10 +340,19 @@ input {
     display: none;
 }
 
-.custom-checkbox input[type="checkbox"]:checked + .custom-checkbox-label, .mood input[type="radio"]:checked + label {
+.custom-checkbox input[type="checkbox"]:checked + .custom-checkbox-label{
     background-image: linear-gradient(#EE43FF, #CC43EF);
     color: #FFFFFF;
     box-shadow: #FFFFFF 0px 0px 5px;
+}
+
+.mood input[type="radio"]:checked + label {
+    color: #000000;
+    background-color: #E1E1E1;
+
+    box-shadow: 
+        0px 0px 8px #000000,
+        inset 0 0 3px #000000;
 }
 
 .relief {
@@ -334,8 +379,9 @@ input {
     display: none;
 }
 
-#moodForm h3 {
+#moodForm h2 {
     padding: 10px 0 30px 0;
+    margin-top: 0;
 }
 /* Index and Relief Form */
 
@@ -343,8 +389,10 @@ input {
     display: inline-block;
     padding: 5px;
     border-radius: 9px;
-    box-shadow: #FF99FF 0px 0px 3px;
-    background-image: linear-gradient(#EE43FF, #CC43EF);
+    box-shadow: 
+        inset #222222 0px 0px 5px,
+        #222222 0 0 3px;
+    
     margin: 5px;
     cursor: pointer;
 }
@@ -356,8 +404,8 @@ input {
 /* Relief Resources */
 
 .relief_resources {
-    width: 220px;
-    height: 220px;
+    width: 150px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -365,13 +413,14 @@ input {
     border-radius: 50px;
     box-shadow: 0 0 10px 2px #000000;
     transition: all 0.2s ease-in-out;
+    margin: 25px 50px;
 
 }
 
 .relief_resources h3 {
     color: #FFFFFF;
     margin-top: 0;
-    font-size: 23px;
+    font-size: 22px;
     text-shadow:
         0.05em 0 2px #662299,
         0 0.05em 2px #662299,
@@ -386,7 +435,7 @@ input {
 }
 
 .relief_resources:hover h3 {
-    font-size: 25px;
+    font-size: 24px;
     transition: all 0.2s ease-in-out;
 }
 

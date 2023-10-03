@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from flask_session import Session
 from app.forms import MoodForm, NegativeForm, PositiveForm, Relief, GratitudeForm, LoginForm, RegistrationForm
 from datetime import date
@@ -319,6 +319,7 @@ def gratitude():
 def delete(key):
     if key in gratitude_journal:
         del gratitude_journal[key]
+        flash("Your post has been deleted!", "success")
         return redirect(url_for("main.gratitude"))
         
         
