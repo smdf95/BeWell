@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} {% endblock %} </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</head>
+<body>
+    <nav>
+        <div class="openMenu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <a href="{{ url_for('main.index') }}" class="title">BeWell</a>
+        <div class="links">
+            <div class="closeMenu">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.relief') }}">Relief</a></li>
+                <li><a href="{{ url_for('main.gratitude') }}">Gratitude</a></li>
+                <li><a href="{{ url_for('main.resources') }}">Resources</a></li>
+            </ul>
+            <div class="login">
+                <ul>
+                    {% if session['logged_in'] %}
+    
+                        <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+    
+                    {% else%}
+                        <li><a href="{{ url_for('main.redirect_login') }}">Login</a></li>
+                        <li><a href="{{ url_for('main.register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>Copyright &copy; 2023 BeWell</p>
+        <p>Built with Love and Compassion</p>
+        <a href="">Contact Us</a>
+    </footer>
+</body>
+</html>

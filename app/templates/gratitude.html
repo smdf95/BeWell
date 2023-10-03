@@ -15,7 +15,7 @@
 <form class="gratitude_form" method="POST" action="">
     {{ form.hidden_tag() }}
     {% if session['logged_in'] == False %}
-        <h4>Please <a href="{{ url_for('redirect_login') }}">log in</a> to post.</h4>
+        <h4>Please <a href="{{ url_for('main.redirect_login') }}">log in</a> to post.</h4>
     {% else %}
         {{ form.gratitude(placeholder="What are you grateful for?") }}
         <button type="submit" class="neat-submit-button">Submit</button>
@@ -30,7 +30,7 @@
             <div class="name">{{ entry.name }} - {{ entry.date }}</div>
             {% if session['user'] == entry.id %}
                 <div class="delete">
-                    <a href="{{ url_for('delete', key=key) }}">Delete</a>
+                    <a href="{{ url_for('main.delete', key=key) }}">Delete</a>
                 </div>
             {% endif %}
         </div>

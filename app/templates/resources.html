@@ -13,7 +13,7 @@
     {% for resource in resource_list %}
         {% if counter < 3 %}
             <div class="images reveal active">
-                <a href="{{ url_for('resource_info', id=resource.id) }}">
+                <a href="{{ url_for('main.resource_info', id=resource.id) }}">
                     <h3>{{ resource.name }}</h3>
                     <img src="{{ resource.images }}" alt="{{ resource.name }}">
                     <p>{{ resource.description }}</p>
@@ -22,7 +22,7 @@
             {% set counter = counter + 1 %}
         {% else %}
             <div class="images reveal">
-                <a href="{{ url_for('resource_info', id=resource.id) }}">
+                <a href="{{ url_for('main.resource_info', id=resource.id) }}">
                     <h3>{{ resource.name }}</h3>
                     <img src="{{ resource.images }}" alt="{{ resource.name }}">
                     <p>{{ resource.description }}</p>
