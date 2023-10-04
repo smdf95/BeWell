@@ -48,14 +48,31 @@ class LoginForm(FlaskForm):
     """
     Form for logging in
     """
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Username or Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
+
+class ForgotPasswordForm(FlaskForm):
+    """
+    Form for resetting password
+    """
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+class ResetPasswordForm(FlaskForm):
+    """
+    Form for resetting password
+    """
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
 
 class RegistrationForm(FlaskForm):
     """
     Form for user registration
     """
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    name = StringField('Name', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(

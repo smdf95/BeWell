@@ -26,8 +26,13 @@
     <p><strong>"{{ quote }}"</strong><small> <br>- {{ author }}</small></p>
 </div>
 
+{% if session['logged_in'] %}
+    <h1 class="centre">Hello {{ accounts[session['user'] - 1]['name'] }}</h1>
+{% else %}
+    <h1 class="centre">Welcome to BeWell</h1>
+{% endif %}
 
-<h1 class="centre">Welcome to BeWell</h1>
+
 <div class="trio reveal">
     <section><a href="{{ url_for('main.relief') }}">
         <h2>Find Relief</h2>

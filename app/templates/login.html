@@ -4,11 +4,17 @@
 
 {% block main %}
 
-<form class="login" method="POST" action="">
-    {{ form.hidden_tag() }}
-        {{ form.username(placeholder="Username") }}
-        {{ form.password(placeholder="Password") }}
-    {{ form.submit }}
-</form>
+<div class="form_container">
+    <form class="login_form" method="POST" action="">
+        <h2>Log In</h2>
+        {{ form.hidden_tag() }}
+            <input type="hidden" name="previous_page" value="{{ session.get('previous_page') }}">
+            {{ form.username(placeholder="Username or Email") }}
+            {{ form.password(placeholder="Password") }}
+            <p><a href="{{ url_for('main.forgot_password') }}">Forgot Password?</a></p>
+        {{ form.submit }}
+        <p>Not a member? <a href="{{ url_for('main.register') }}">Sign up</a></p>
+    </form>
+</div>
 
 {% endblock %}

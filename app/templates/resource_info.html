@@ -17,6 +17,7 @@
     
 </div>
 
+{% if resource.sources %}
 <div class="resource_url">
     <h2>Resources</h2>
     <ul>
@@ -24,6 +25,8 @@
 
     </ul>
 </div>
+{% endif %}
+
 {% if resource.url %}
     <h3>Try Now</h3>
     {{ resource.url|safe }}
