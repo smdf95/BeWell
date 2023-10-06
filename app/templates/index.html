@@ -53,31 +53,48 @@
             <h2>How are you feeling?</h2>
             {{ form.hidden_tag() }}
             <div class="mood">
-                {{ form.mood }}
-                {{ form.submit }}
+                <label id="bad_label">
+                    <img src="{{ url_for('static', filename='images/sad.png')}}" height="100px" alt="Sad Face" class="mood_image">
+                    <input type="radio" name="mood" value="Awful">
+                    Bad
+                </label>
+                <label id="okay_label">
+                    <img src="{{ url_for('static', filename='images/okay.png')}}" height="100px" alt="Okay Face" class="mood_image">
+                    <input type="radio" name="mood" value="okay">
+                    Okay
+                </label>
+                <label id="good_label">
+                    <img src="{{ url_for('static', filename='images/happy.png')}}" height="100px" alt="Happy Face" class="mood_image">
+                    <input type="radio" name="mood" value="Amazing">
+                    Good
+                </label>
             </div>
         </form>
         <h3 class="neg">Sorry to hear that. Would you like to find some relief?</h3>
         <h3 class="okay">Would you like to find some relief?</h3>
         <form class="negative" method="POST" action="">
             {{ negative_form.hidden_tag()}}
-            <div class="mood">
+            <div class="mood_response">
                 {{negative_form.neg_selection }}
-                {{ negative_form.submit }}
+                <button type="submit" class="neat-submit-button">Submit</button>
             </div>
 
         </form>
+
+        <h3 class="neg_no">Hang in there</h3>
         
 
         <h3 class="pos">That's great! Would you like to post in the community gratitude journal?</h3>
         <form class="positive" method="POST" action="">
             {{ positive_form.hidden_tag()}}
-            <div class="mood">
+            <div class="mood_response">
                 {{ positive_form.pos_selection }}
-                {{ positive_form.submit }}
+                <button type="submit" class="neat-submit-button">Submit</button>
             </div>
 
+            
         </form>
+        <h3 class="pos_no">Keep on smiling</h3>
     </div>
     
 </div>
@@ -86,19 +103,21 @@
 var form = document.getElementById('moodForm');
 document.addEventListener('DOMContentLoaded', function () {
     if (form) {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            var moodInput = form.elements['mood'];
-            var mood = moodInput.value;
-            console.log("Selected mood: " + mood); // Add this line for debugging
-            if (mood === 'Awful' || mood === 'Not Good') {
-                negativeSelection(event);
-            } else if (mood === "Good" || mood === "Amazing") {
-                positiveSelection(event);
-            } else {
-                okaySelection(event);
-            }
-            
+        var moodImages = document.querySelectorAll('.mood img');
+        
+        moodImages.forEach(function(image) {
+            image.addEventListener('click', function(event) {
+                event.preventDefault();
+                var selectedMood = image.nextElementSibling.value;
+
+                if (selectedMood === 'Awful') {
+                    negativeSelection(event);
+                } else if (selectedMood === "Amazing") {
+                    positiveSelection(event);
+                } else {
+                    okaySelection(event);
+                }
+            });
         });
     }
 });
@@ -116,10 +135,18 @@ function negativeSelection(event) {
             if (negativeInput.value === 'No') {
                 event.preventDefault();
                 negativeForm.style.display = 'none';
+                negativeHeading.style.display = 'none';
+                negativeResponse();
+                
             } 
 
         }
     });
+}
+
+function negativeResponse() {
+    var negativeResponse = document.getElementsByClassName('neg_no')[0];
+    negativeResponse.style.display = 'block';
 }
 
 function okaySelection(event) {
@@ -128,17 +155,25 @@ function okaySelection(event) {
     var okayHeading = document.getElementsByClassName('okay')[0];
     negativeForm.style.display = 'block';
     okayHeading.style.display = 'block';
-    okayForm.addEventListener('submit', function (event) {
-        if (okayForm) {
+    negativeForm.addEventListener('submit', function (event) {
+        if (negativeForm) {
             var negativeInput = negativeForm.elements['neg_selection'];
             negativeMood = negativeInput.value;
             if (negativeInput.value === 'No') {
                 event.preventDefault();
                 negativeForm.style.display = 'none';
+                okayHeading.style.display = 'none';
+                negativeResponse();
             } 
 
         }
     });
+}
+
+function positiveResponse() {
+    var positiveResponse = document.getElementsByClassName('pos_no')[0];
+    positiveResponse.style.display = 'block';
+    
 }
 
 function positiveSelection(event) {
@@ -149,16 +184,21 @@ function positiveSelection(event) {
     positiveHeading.style.display = 'block';
     positiveForm.addEventListener('submit', function (event) {
         if (positiveForm) {
+
             var positiveInput = positiveForm.elements['pos_selection'];
             positiveMood = positiveInput.value;
             if (positiveInput.value === 'No') {
                 event.preventDefault();
                 positiveForm.style.display = 'none';
+                positiveHeading.style.display = 'none';
+                positiveResponse();
             } 
 
         }
     });
 }
+
+
 </script>
 
 

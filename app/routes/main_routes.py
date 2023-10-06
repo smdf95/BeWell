@@ -89,7 +89,8 @@ resource_list = [
         "url": '',
         "images": "https://feelgoodpal.com/blog/can-you-lose-weight-by-walking-an-hour-a-day/feature_huaf75c49c3661eb37ef38a46188171d60_551648_1200x1200_fill_q100_box_smart1.jpg",
         "description": "Walking is a simple yet effective way to reconnect with nature, alleviate tension, and invigorate both body and mind, promoting overall well-being.",
-        "extra_description": "It is a cost-efficient, yet powerful tool for combatting stress, anxiety, and depression. If walking is not a viable option for you, just simply being outside can help clear our mind and reconnect with the present moment."
+        "extra_description": "It is a cost-efficient, yet powerful tool for combatting stress, anxiety, and depression. If walking is not a viable option for you, just simply being outside can help clear our mind and reconnect with the present moment.",
+        "sources": '<li><a href="https://www.alltrails.com/" target="_blank">AllTrails</a> provides a vast database of hiking and walking trails, including user reviews and trail maps.</li><li><a href="https://www.walkscore.com/" target="_blank">Walk Score</a> calculates the walkability of a neighborhood, helping you find pedestrian-friendly areas and plan walking routes.</li><li><a href="https://www.mapmywalk.com/" target="_blank">MapMyWalk</a> tracks your walking routes, distance, and calories burned, helping you set and achieve walking goals.</li>'
 
     },
     {
@@ -110,14 +111,15 @@ resource_list = [
         "url": '',
         "images": "https://freerangestock.com/sample/120817/close-up-of-hand-writing-on-a-notebook.jpg",
         "description": "Journaling is a reflective practice that encourages self-expression, emotional processing, and self-discovery, offering a valuable outlet for thoughts and feelings.",
-        "extra_description": "Simply writing whatever comes to mind can help us unload the burden of our stress and offer us a new perspective on the situation. It can free us from endless rumination and help us to connect with our inner self."
+        "extra_description": "Simply writing whatever comes to mind can help us unload the burden of our stress and offer us a new perspective on the situation. It can free us from endless rumination and help us to connect with our inner self.",
+        "sources": '<li><a href="https://www.journaling.com/" target="_blank">Journaling.com</a> is a website dedicated to journaling with resources and prompts, and it also offers a platform for digital journaling.</li><li><a href="https://www.journalate.com/" target="_blank">Journalate</a> is an online platform for digital journaling, allowing you to write and reflect privately.</li><li><a href="https://journey.cloud/" target="_blank">Journey</a> is a multi-platform journal app that syncs across devices, offering a private and secure space for journaling.</li>'
 
     },
     {
         "id": 8,
         "name": "4x4 Breathing",
         "symptoms": "tension, shortness of breath, agitation, irritation, restlessness, rumination, worry",
-        "url": '',
+        "url": '<iframe width="40%" height="280px" class="small_video" src="https://www.youtube.com/embed/bF_1ZiFta-E?si=1QWvdguEyo-gGSDz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
         "images": "https://www.loghouse.ie/wp-content/uploads/2022/01/How-to-build-a-Meditation-room-at-home.jpg",
         "description": "4x4 breathing, also known as box breathing, involves inhaling for 4 seconds, holding for 4 seconds, exhaling for 4 seconds, and pausing for 4 seconds between breaths, promoting relaxation and stress reduction.",
         "extra_description": "It is a simple, yet scientifically proven breathing technique that can help you to reduce stress and anxiety. It is a great way to step outside of your thoughts and focus on your breath."
@@ -130,7 +132,8 @@ resource_list = [
         "url": '',
         "images": "https://www.stockvault.net/data/2016/09/28/211357/preview16.jpg",
         "description": "Mindful colouring is a meditative practice that involves focusing on colouring intricate patterns or images with full attention, helping to calm the mind and reduce stress.",
-        "extra_description": "Mindful colouring books are like colouring books for adults. It allows us to become immersed in a creative process, which has been found to be incredibly helpful for our mental health."
+        "extra_description": "Mindful colouring books are like colouring books for adults. It allows us to become immersed in a creative process, which has been found to be incredibly helpful for our mental health.",
+        "sources": '<li><a href="https://www.coloringpagesforadults.net/" target="_blank">Coloring Pages for Adults</a> offers a variety of free printable coloring pages designed specifically for adults for mindful coloring.</li><li><a href="https://www.justcolor.net/" target="_blank">Just Color</a> provides a wide selection of free coloring pages, including intricate and detailed designs perfect for relaxation.</li><li><a href="https://www.coloring-book.info/" target="_blank">Coloring Book Info</a> offers a collection of printable coloring pages featuring various themes, from nature to mandalas.</li><li><a href="https://www.crayola.com/free-coloring-pages" target="_blank">Crayola</a> offer a range of coloring sheets for all ages, with a focus on creativity and mindfulness.</li>'
     },
     {
         "id": 10,
@@ -139,7 +142,8 @@ resource_list = [
         "url": '',
         "images": "https://live.staticflickr.com/65535/51097799939_30a167fc22_b.jpg",
         "description": "Reading a book can help you relax, clear your mind, and boost your mood. It can also help you fall asleep quicker.",
-        "extra_description": "Reading has been found to be a great resource for stress relief and relaxation."
+        "extra_description": "Reading has been found to be a great resource for stress relief and relaxation.",
+        "sources": '<li><a href="https://www.projectgutenberg.org/" target="_blank">Project Gutenberg</a> offers over 60,000 free eBooks, including many classic literary works.</li><li><a href="https://openlibrary.org/" target="_blank">Open Library</a> is a digital library that provides access to a wide range of books, including rare and out-of-print titles.</li><li><a href="https://www.amazon.com/Kindle-eBooks/b?ie=UTF8&node=154606011" target="_blank">Amazon Kindle Store</a> provides a wide selection of eBooks for Kindle readers and apps.</li><li><a href="https://www.audible.com/" target="_blank">Audible</a> offers a vast collection of audiobooks for those who prefer to listen while reading.</li><li><a href="https://librivox.org/" target="_blank">LibriVox</a> offers free audiobooks of public domain books, read by volunteers from around the world.</li>'
     }
 ]
 
@@ -222,9 +226,9 @@ def login():
             if account['username'] == username or account['email'] == username and account['password'] == password:
                 session['logged_in'] = True
                 session['user'] = account['id']
-                print("previous_page:", session['previous_page'])
-                if session['previous_page']:
-                    return redirect(session['previous_page'])
+                print("previous_page:", previous_page)
+                if previous_page:
+                    return redirect(previous_page)
                 else:
                     return redirect(url_for('main.index'))
             else:

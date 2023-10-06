@@ -27,10 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function show() {
         mainMenu.style.left = "0";
+        mainMenu.style.boxShadow = "0 0 200px 100px #000000";
     }
 
     function close() {
         mainMenu.style.left = "-80%";
+        mainMenu.style.boxShadow = "none";
+        
     }
 });
 
