@@ -229,11 +229,8 @@ def login():
                 print("previous_page:", previous_page)
                 if previous_page:
                     return redirect(previous_page)
-                elif previous_page == None:
-                    return redirect(url_for('main.index'))
                 else:
                     return redirect(url_for('main.index'))
-
             else:
                 flash("The information you entered is incorrect", "danger")
         return render_template('login.html', form=form, error='Invalid username or password')

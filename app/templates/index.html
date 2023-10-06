@@ -49,7 +49,7 @@
 </div>
 <div class="form-centre reveal">
     <div class="form-box">
-        <form id="moodForm" method="POST" action="">
+        <form id="moodForm" class="visible" method="POST" action="">
             <h2>How are you feeling?</h2>
             {{ form.hidden_tag() }}
             <div class="mood">
@@ -70,9 +70,9 @@
                 </label>
             </div>
         </form>
-        <h3 class="neg">Sorry to hear that. Would you like to find some relief?</h3>
-        <h3 class="okay">Would you like to find some relief?</h3>
-        <form class="negative" method="POST" action="">
+        <h3 class="neg hidden">Sorry to hear that. Would you like to find some relief?</h3>
+        <h3 class="okay hidden">Would you like to find some relief?</h3>
+        <form class="negative hidden" method="POST" action="">
             {{ negative_form.hidden_tag()}}
             <div class="mood_response">
                 {{negative_form.neg_selection }}
@@ -81,11 +81,11 @@
 
         </form>
 
-        <h3 class="neg_no">Hang in there</h3>
+        <h3 class="neg_no hidden">Hang in there</h3>
         
 
-        <h3 class="pos">That's great! Would you like to post in the community gratitude journal?</h3>
-        <form class="positive" method="POST" action="">
+        <h3 class="pos hidden">That's great! Would you like to post in the community gratitude journal?</h3>
+        <form class="positive hidden" method="POST" action="">
             {{ positive_form.hidden_tag()}}
             <div class="mood_response">
                 {{ positive_form.pos_selection }}
@@ -94,12 +94,14 @@
 
             
         </form>
-        <h3 class="pos_no">Keep on smiling</h3>
+        <h3 class="pos_no hidden">Keep on smiling</h3>
     </div>
     
 </div>
 
 <script>
+
+    
 var form = document.getElementById('moodForm');
 document.addEventListener('DOMContentLoaded', function () {
     if (form) {
@@ -123,77 +125,123 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function negativeSelection(event) {
-    form.style.display = 'none';
+    form.classList.add('hidden');
+    form.classList.remove('visible');
     var negativeForm = document.getElementsByClassName('negative')[0];
     var negativeHeading = document.getElementsByClassName('neg')[0];
-    negativeForm.style.display = 'block';
-    negativeHeading.style.display = 'block';
+    negativeForm.classList.remove('hidden');
+    negativeHeading.classList.remove('hidden');
+    negativeHeading.style.display = "block";
+    negativeForm.style.display = "block";
+    negativeForm.classList.add('visible');
+    negativeHeading.classList.add('visible');
     negativeForm.addEventListener('submit', function (event) {
         if (negativeForm) {
             var negativeInput = negativeForm.elements['neg_selection'];
             negativeMood = negativeInput.value;
             if (negativeInput.value === 'No') {
                 event.preventDefault();
-                negativeForm.style.display = 'none';
-                negativeHeading.style.display = 'none';
+                negativeForm.classList.remove('visible');
+                negativeHeading.classList.remove('visible');
+                negativeForm.classList.add('hidden');
+                negativeHeading.classList.add('hidden');
+                setTimeout(function () {
+                    form.style.display = 'none'
+                    negativeForm.style.display = 'none';
+                    negativeHeading.style.display = 'none';
+                }, 900); // Match the animation duration
                 negativeResponse();
-                
-            } 
-
+            }
         }
     });
 }
 
+
+
+
 function negativeResponse() {
     var negativeResponse = document.getElementsByClassName('neg_no')[0];
-    negativeResponse.style.display = 'block';
+    setTimeout(function () {
+        negativeResponse.classList.add('visible')
+        negativeResponse.style.display = 'block';
+        neg
+        negativeResponse.style.margin = '0 auto';
+
+    }, 800);
+
 }
 
 function okaySelection(event) {
-    form.style.display = 'none';
+    form.classList.add('hidden');
+    form.classList.remove('visible');
     var negativeForm = document.getElementsByClassName('negative')[0];
     var okayHeading = document.getElementsByClassName('okay')[0];
-    negativeForm.style.display = 'block';
-    okayHeading.style.display = 'block';
+    negativeForm.classList.remove('hidden');
+    okayHeading.classList.remove('hidden');
+    okayHeading.style.display = "block";
+    negativeForm.style.display = "block";
+    negativeForm.classList.add('visible');
+    okayHeading.classList.add('visible');
     negativeForm.addEventListener('submit', function (event) {
         if (negativeForm) {
-            var negativeInput = negativeForm.elements['neg_selection'];
-            negativeMood = negativeInput.value;
-            if (negativeInput.value === 'No') {
+            var okayInput = negativeForm.elements['neg_selection'];
+            okayMood = okayInput.value;
+            if (okayInput.value === 'No') {
                 event.preventDefault();
-                negativeForm.style.display = 'none';
-                okayHeading.style.display = 'none';
+                negativeForm.classList.remove('visible');
+                okayHeading.classList.remove('visible');
+                negativeForm.classList.add('hidden');
+                okayHeading.classList.add('hidden');
+                setTimeout(function () {
+                    form.style.display = 'none'
+                    negativeForm.style.display = 'none';
+                    okayHeading.style.display = 'none';
+                }, 900); // Match the animation duration
                 negativeResponse();
-            } 
-
+            }
         }
     });
 }
 
 function positiveResponse() {
     var positiveResponse = document.getElementsByClassName('pos_no')[0];
-    positiveResponse.style.display = 'block';
-    
+    setTimeout(function () {
+        positiveResponse.classList.add('visible')
+        positiveResponse.style.display = 'block';
+        neg
+        positiveResponse.style.margin = '0 auto';
+
+    }, 800);
 }
 
 function positiveSelection(event) {
-    form.style.display = 'none';
+    form.classList.add('hidden');
+    form.classList.remove('visible');
     var positiveForm = document.getElementsByClassName('positive')[0];
     var positiveHeading = document.getElementsByClassName('pos')[0];
-    positiveForm.style.display = 'block';
-    positiveHeading.style.display = 'block';
+    positiveForm.classList.remove('hidden');
+    positiveHeading.classList.remove('hidden');
+    positiveHeading.style.display = "block";
+    positiveForm.style.display = "block";
+    positiveForm.classList.add('visible');
+    positiveHeading.classList.add('visible');
     positiveForm.addEventListener('submit', function (event) {
         if (positiveForm) {
-
             var positiveInput = positiveForm.elements['pos_selection'];
             positiveMood = positiveInput.value;
             if (positiveInput.value === 'No') {
                 event.preventDefault();
-                positiveForm.style.display = 'none';
-                positiveHeading.style.display = 'none';
+                positiveForm.classList.remove('visible');
+                positiveHeading.classList.remove('visible');
+                positiveForm.classList.add('hidden');
+                positiveHeading.classList.add('hidden');
+                setTimeout(function () {
+                    form.style.display = 'none'
+                    positiveForm.style.display = 'none';
+                    positiveHeading.style.display = 'none';
+                }, 900); // Match the animation duration
                 positiveResponse();
-            } 
-
+            }
         }
     });
 }

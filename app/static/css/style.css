@@ -435,10 +435,54 @@ input:focus {
     display: none;
 }
 
+.neg, .pos, .okay, .neg_no, .pos_no, .negative, .positive {
+    display: none;
+}
+
+@keyframes collapse {
+    0% {
+        opacity: 1;
+        max-height: 1000px; /* Set to a high value */
+    }
+    100% {
+        opacity: 0;
+        max-height: 0;
+    }
+}
+
+@keyframes expand {
+    0% {
+        opacity: 0;
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        max-height: 1000px; /* Set to a high value */
+    }
+}
+
+
+.hidden {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    animation: collapse 1s ease;
+}
+
+.visible {
+    opacity: 1;
+    max-height: 1000px; /* Set to a high value */
+    visibility: visible;
+    animation: expand 1s ease;
+}
+
 #moodForm h2 {
     padding: 10px 0 30px 0;
     margin-top: 0;
 }
+
+
 /* Index and Relief Form */
 
 .custom-checkbox-label {
@@ -508,10 +552,6 @@ input:focus {
 }
 
 
-.negative, .positive, .okay, .neg, .pos, .neg_no, .pos_no {
-    display: none;
-    
-}
 
 /* Relief Resources */
 
