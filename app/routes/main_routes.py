@@ -170,7 +170,6 @@ gratitude_journal = {
 filtered_items = []  
 
 
-
 @main_bp.before_request
 def before_request():
     username = session.get('user')
@@ -180,14 +179,6 @@ def before_request():
         session['user'] = 0
     
         
-
-
-
-
-
-
-
-
 
 @main_bp.route("/", methods=['GET', 'POST'])
 @main_bp.route("/index", methods=['GET', 'POST'])
@@ -218,12 +209,20 @@ def index():
 def login():
 
     form = LoginForm()
+
+
+    previous_page = request.args.get('previous_page')
+    print('Previous Page:', previous_page)
+
+    if previous_page:
+        session['previous_page'] = previous_page
+    
+
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        previous_page = request.form.get('previous_page')
         for account in accounts:
-            if account['username'] == username or account['email'] == username and account['password'] == password:
+            if (account['username'] == username or account['email'] == username) and account['password'] == password:
                 session['logged_in'] = True
                 session['user'] = account['id']
                 print("previous_page:", previous_page)
@@ -264,12 +263,14 @@ def reset_password(email):
 @main_bp.route('/register', methods=['GET', 'POST'])
 def register():
 
+    previous_page = request.args.get('previous_page')
+
     form = RegistrationForm()
     if form.validate_on_submit():
-        previous_page = request.form.get('previous_page')
         entered_email = form.email.data.lower()
         if any(account['email'].lower() == entered_email for account in accounts):
             flash('This email is already in use', 'danger')
+            return redirect(url_for('main.register'))
         if any(account['username'] == form.username.data for account in accounts):
             flash('This username is already in use', 'danger')
         else:

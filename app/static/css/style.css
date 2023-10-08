@@ -14,6 +14,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 
 main {
@@ -522,6 +523,11 @@ input:focus {
     transition: all 0.2s ease-in-out;
 }
 
+.mood_response ul {
+    margin-bottom: 20px;
+}
+
+
 .mood_image {
     border-radius: 50%;
     box-shadow: #222222 0 0 10px;
@@ -756,7 +762,6 @@ iframe {
     cursor: pointer;
     box-shadow: #662299 0 0 4px;
     font-weight: 600;
-    margin-top: 30px;
     
 }
 
