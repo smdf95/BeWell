@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function close() {
-        mainMenu.style.left = "-80%";
+        mainMenu.style.left = "-70%";
         mainMenu.style.boxShadow = "none";
         
     }

@@ -12,16 +12,16 @@
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <ul>
-                {% for choice, label in form.relief.choices %}
-                    <li>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="{{ form.relief.name }}" value="{{ choice }}">
-                            <span class="custom-checkbox-label">{{ label }}</span>
-                        </label>
-                    </li>
-                {% endfor %}
-            </ul>
-            <button type="submit" class="neat-submit-button">Submit</button>
-        </form>
+            {% for choice, label in form.relief.choices %}
+                <li>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="{{ form.relief.name }}" value="{{ choice }}">
+                        <span class="custom-checkbox-label">{{ label }}</span>
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit" class="neat-submit-button">Submit</button>
+    </form>
     </div>
 {% endblock %}
