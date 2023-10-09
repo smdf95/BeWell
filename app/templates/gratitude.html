@@ -26,7 +26,10 @@
     {% for key, entry in gratitude_journal.items() %}
     {% if entry %}
         <div class="gratitude_entry">
-            <div class="entry">{{ entry.gratitude }}</div>
+            <div class="entry">
+                {{ entry.gratitude }}
+                
+            </div>
             <div class="name">{{ entry.name }} - {{ entry.date }}</div>
             {% if session['user'] == entry.id %}
                 <div class="delete">

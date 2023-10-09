@@ -4,6 +4,7 @@ from app.forms import MoodForm, NegativeForm, PositiveForm, Relief, GratitudeFor
 from datetime import date
 from . import main_bp
 import requests
+import random
 
 
 response = requests.get("https://zenquotes.io/api/random/")
@@ -32,7 +33,7 @@ resource_list = [
         "id": 0,
         "name": "Leaves on a Stream",
         "symptoms": "rumination, worry, sadness",
-        "url": '<iframe width="60%" height="120px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/194056066&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dennis-tirch-phd" title="CompassionFocusedTherapy" target="_blank" style="color: #cccccc; text-decoration: none;">CompassionFocusedTherapy</a> · <a href="https://soundcloud.com/dennis-tirch-phd/leaves-on-a-stream" title="Leaves On A Stream" target="_blank" style="color: #cccccc; text-decoration: none;">Leaves On A Stream</a></div>',
+        "url": '<iframe width="60%" height="120px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/194056066&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
         "images": "https://p1.pxfuel.com/preview/521/721/196/leaves-water-reflection-color-colorful-nature.jpg",
         "description": "Leaves on a Stream is a short guided meditation that's designed to help us step away from our thoughts and watch as they come and go. This helps stop us from getting swept up and lost in our thoughts.",
         "extra_description": "This can be practiced everyday, and is a great way of learning that your thoughts are temporary, and often non-factual.",
@@ -52,7 +53,7 @@ resource_list = [
         "id": 2,
         "name": "Mindfulness Meditation",
         "symptoms": "rumination, agitation, irritation, restlessness, worry, sadness",
-        "url": '',
+        "url": '<iframe width="60%" height="120px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1045363663&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
         "images": "https://feelgoodpal.com/blog/health-benefits-of-meditation/feature_hua7828a6576614f61d7673755ec2289a2_107633_1200x1200_fill_q100_box_smart1.jpg",
         "description": "Mindfulness meditation fosters present-moment awareness, helping us understand our thoughts and emotions without judgment, promoting inner clarity and calm.",
         "extra_description": "Whether you decide to sit down and practice for 10 minutes or you prefer to practice while going about your day, mindfulness meditation is a great way to help you manage stress and anxiety.",
