@@ -6,6 +6,9 @@
 {% block main %}
 
 <script>
+
+    // This function is called when the page is loaded. It is just a short animation where the smiley face gets smaller and the margin around the div is shortened
+
     setTimeout(() => {
         const quoteElement = document.querySelector(".quote");
         const smiley = document.querySelector(".smiley");
@@ -81,7 +84,7 @@
         </form>
 
         <h3 class="neg_no hidden">Hang in there</h3>
-        
+
 
         <h3 class="pos hidden">That's great! Would you like to post in the community gratitude journal?</h3>
         <form class="positive hidden" method="POST" action="">
@@ -91,17 +94,20 @@
                 <button type="submit" class="neat-submit-button">Submit</button>
             </div>
 
-            
+
         </form>
         <h3 class="pos_no hidden">Keep on smiling</h3>
     </div>
-    
+
 </div>
 
 <script>
 
     
 var form = document.getElementById('moodForm');
+
+// This function is for determining which mood picture was chosen, and then calls the next relevant function
+
 document.addEventListener('DOMContentLoaded', function () {
     if (form) {
         var moodImages = document.querySelectorAll('.mood img');
@@ -123,9 +129,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// This function is called when the user selects a bad mood.
+
 function negativeSelection(event) {
+
+    // First the form is hidden
+
     form.classList.add('hidden');
     form.classList.remove('visible');
+
+    // Then the negative mood form and heading are displayed
     var negativeForm = document.getElementsByClassName('negative')[0];
     var negativeHeading = document.getElementsByClassName('neg')[0];
     negativeForm.classList.remove('hidden');
@@ -134,11 +147,20 @@ function negativeSelection(event) {
     negativeForm.style.display = "block";
     negativeForm.classList.add('visible');
     negativeHeading.classList.add('visible');
+
+    // An event listener is added to the form, which will be called when the user clicks the submit button
+
     negativeForm.addEventListener('submit', function (event) {
         if (negativeForm) {
             var negativeInput = negativeForm.elements['neg_selection'];
             negativeMood = negativeInput.value;
+
+            // If the user selects "Yes" then they are brought to the relief page. This is handled in Flask
+
             if (negativeInput.value === 'No') {
+
+                // If the user selects "No", the heading and the form will disappear and the negativeResponse function will be called
+
                 event.preventDefault();
                 negativeForm.classList.remove('visible');
                 negativeHeading.classList.remove('visible');
@@ -156,7 +178,7 @@ function negativeSelection(event) {
 }
 
 
-
+// This function handles the response to the negative form. It is called when the user selects "No". It displays a short message: "Hang in there". This is used for bad mood and okay mood
 
 function negativeResponse() {
     var negativeResponse = document.getElementsByClassName('neg_no')[0];
@@ -169,9 +191,17 @@ function negativeResponse() {
 
 }
 
+// This function is called when the user selects an okay mood.
+
 function okaySelection(event) {
+
+    // First the form is hidden
+
     form.classList.add('hidden');
     form.classList.remove('visible');
+
+    // Then the negative mood form and a heading are displayed
+
     var negativeForm = document.getElementsByClassName('negative')[0];
     var okayHeading = document.getElementsByClassName('okay')[0];
     negativeForm.classList.remove('hidden');
@@ -180,11 +210,21 @@ function okaySelection(event) {
     negativeForm.style.display = "block";
     negativeForm.classList.add('visible');
     okayHeading.classList.add('visible');
+
+    // An event listener is added to the form, which will be called when the user clicks the submit button
+
     negativeForm.addEventListener('submit', function (event) {
         if (negativeForm) {
             var okayInput = negativeForm.elements['neg_selection'];
             okayMood = okayInput.value;
+
+            // If the user selects "Yes" then they are brought to the relief page. This is handled in Flask
+
             if (okayInput.value === 'No') {
+
+
+                // If the user selects "No", the heading and the form will disappear and the negativeResponse function will be called
+
                 event.preventDefault();
                 negativeForm.classList.remove('visible');
                 okayHeading.classList.remove('visible');
@@ -201,6 +241,9 @@ function okaySelection(event) {
     });
 }
 
+
+// This function handles the response to the positive form. It is called when the user selects "No". It displays a short message: "Keep on Smiling".
+
 function positiveResponse() {
     var positiveResponse = document.getElementsByClassName('pos_no')[0];
     setTimeout(function () {
@@ -211,9 +254,18 @@ function positiveResponse() {
     }, 300);
 }
 
+
+// This function is called when the user selects a bad mood.
+
 function positiveSelection(event) {
+
+    // First the form is hidden
+
     form.classList.add('hidden');
     form.classList.remove('visible');
+
+    // Then the positive mood form and heading are displayed
+
     var positiveForm = document.getElementsByClassName('positive')[0];
     var positiveHeading = document.getElementsByClassName('pos')[0];
     positiveForm.classList.remove('hidden');
@@ -222,11 +274,22 @@ function positiveSelection(event) {
     positiveForm.style.display = "block";
     positiveForm.classList.add('visible');
     positiveHeading.classList.add('visible');
+
+    // An event listener is added to the form, which will be called when the user clicks the submit button
+
     positiveForm.addEventListener('submit', function (event) {
         if (positiveForm) {
             var positiveInput = positiveForm.elements['pos_selection'];
             positiveMood = positiveInput.value;
+
+            // If the user selects "Yes" then they are brought to the gratitude page. This is handled in Flask
+
+
             if (positiveInput.value === 'No') {
+
+                // If the user selects "No", the heading and the form will disappear and the positiveResponse function will be called
+
+
                 event.preventDefault();
                 positiveForm.classList.remove('visible');
                 positiveHeading.classList.remove('visible');

@@ -30,12 +30,14 @@ response = requests.get("https://zenquotes.io/api/random/")
 json_data = response.json()
 
 def get_quote():
+    """Grabs quote from API"""
     quote = json_data[0]['q']
     return quote
 
 quote = get_quote()
 
 def get_author():
+    """Grabs Author of Quote from API"""
     author = json_data[0]['a']
     return author
 
@@ -47,6 +49,7 @@ author = get_author()
 
 
 resource_list = [
+
     {
         "id": 0,
         "name": "Leaves on a Stream",
@@ -191,6 +194,9 @@ filtered_items = []
 
 @main_bp.before_request
 def before_request():
+    
+    """Checks whether user is logged in. If not, it will set the variables to logged out"""
+
     username = session.get('user')
 
     if username is None or username < 1 or username > len(accounts):
@@ -206,17 +212,19 @@ def index():
     negative_form = NegativeForm()
     positive_form = PositiveForm()
     
+    # The user will be redirected to the Relief page if they answer 'yes'. The JavaScript on the homepage will handle the response if they answer 'no'
+
     negative_mood = negative_form.neg_selection.data
     if negative_form.validate_on_submit():
         if negative_mood == "Yes":
-            print(negative_mood)
             return redirect(url_for("main.relief"))
     
     
-    
+    # The user will be redirected to the Gratitude page if they answer 'yes'. The JavaScript on the homepage will handle the response if they answer 'no'
+
+    positive_mood = positive_form.pos_selection.data
     if positive_form.validate_on_submit():
-        if positive_form.pos_selection.data == "Yes":
-            print(positive_form.pos_selection.data)
+        if positive_mood == "Yes":
             return redirect(url_for("main.gratitude"))
 
     return render_template("index.html", negative_form=negative_form, positive_form=positive_form, quote=quote, author=author, accounts=accounts)
@@ -230,50 +238,74 @@ def login():
 
 
     previous_page = request.args.get('previous_page')
-    print('Previous Page:', previous_page)
 
     if previous_page:
-        session['previous_page'] = previous_page
+        session['previous_page'] = previous_page # This brings the user back to the page they were on before logging in
     
-
     if form.validate_on_submit():
+        
         username = form.username.data
         password = form.password.data
-        for account in accounts:
-            if (account['username'] == username or account['email'] == username) and account['password'] == password:
+        
+        for account in accounts: 
+            
+            # User can use email or username to log in
+
+            if (account['username'] == username or account['email'] == username) and account['password'] == password:  
+
                 session['logged_in'] = True
                 session['user'] = account['id']
-                print("previous_page:", previous_page)
+
                 if previous_page:
                     return redirect(previous_page)
                 else:
                     return redirect(url_for('main.index'))
             else:
+                # If user inputs incorrect information, a flash message will appear at the top of the page
+                 
                 flash("The information you entered is incorrect", "danger")
+
         return render_template('login.html', form=form, error='Invalid username or password')
+    
     return render_template('login.html', form=form)
 
 @main_bp.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
+
+
     form = ForgotPasswordForm()
+
+    # This is used to reset a user's password. However, it is not secure, as it only redirects the user to a page to reset their password. With more time, I would implement an email system that would provide a link to the page for resetting the password
+
     if form.validate_on_submit():
         email = form.email.data
         for account in accounts:
             if account['email'] == email:
                 return redirect(url_for('main.reset_password', email=email))
+            else:
+                flash("The email you entered does not exist", "danger")
         return render_template('forgot_password.html', form=form, error='Invalid email')
+    
     return render_template('forgot_password.html', form=form)
 
 @main_bp.route('/reset_password/<email>', methods=['GET', 'POST'])
 def reset_password(email):
+
+    # Resets user's password
+
     form = ResetPasswordForm()
     if form.validate_on_submit():
         password = form.password.data
+        password2 = form.password2.data
         for account in accounts:
             if account['email'] == email:
-                account['password'] = password
-                return redirect(url_for('main.login'))
+                if password == password2:
+                    account['password'] = password
+                    return redirect(url_for('main.login'))
+            else:
+                flash("The email you entered does not exist", "danger")
         return render_template('forgot_password.html', form=form, error='Invalid email')
+    
     return render_template('reset_password.html', form=form)
 
 
@@ -281,9 +313,12 @@ def reset_password(email):
 @main_bp.route('/register', methods=['GET', 'POST'])
 def register():
 
+    # Registers a new user
+
     previous_page = request.args.get('previous_page')
 
     form = RegistrationForm()
+
     if form.validate_on_submit():
         entered_email = form.email.data.lower()
         if any(account['email'].lower() == entered_email for account in accounts):
@@ -301,15 +336,21 @@ def register():
             })
             session['logged_in'] = True
             session['user'] = len(accounts)
-            print("previous_page:", previous_page)
+
+
             if previous_page:
                 return redirect(previous_page)
+                # Bring's user back to previous page after registering 
             else:
                 return redirect(url_for('main.index'))
     return render_template("register.html", form=form)
 
+
 @main_bp.route('/redirect_logout')
 def redirect_logout():
+
+    # Logs user out and redirects to previous page
+
     session['previous_page'] = request.referrer
     session['logged_in'] = False
     session['user'] = 0
@@ -327,6 +368,8 @@ def resource_info(id):
 
 @main_bp.route("/gratitude", methods=['GET', 'POST'])
 def gratitude():
+
+    # Form for making entry into Gratitude Journal
     
     form = GratitudeForm()
     username = session.get('user')     
@@ -353,6 +396,9 @@ def gratitude():
 
 @main_bp.route('/delete/<int:key>')
 def delete(key):
+
+    # Deletes the post with the given key
+
     if key in gratitude_journal:
         del gratitude_journal[key]
         flash("Your post has been deleted!", "success")
@@ -361,6 +407,9 @@ def delete(key):
 
 @main_bp.route("/relief", methods=['GET', 'POST'])
 def relief():
+
+    # User selects what symptoms they are feeling in the present moment
+
     form = Relief()
     global filtered_items
 
@@ -369,6 +418,8 @@ def relief():
             selected_feelings = form.relief.data
 
             filtered_items = []
+
+            # The list of filtered items will be amended with resources for the chosen symptoms
 
             for resource in resource_list:
                 if any(feeling.lower() in resource["symptoms"].lower() for feeling in selected_feelings):
@@ -381,6 +432,8 @@ def relief():
                         "description": resource["description"]
                     })
 
+            # These filtered resources will be displayed on the relief_resource page
+            
             return render_template('relief_resources.html', filtered_items=filtered_items, selected_feelings=selected_feelings)
 
     return render_template('relief.html', form=form)

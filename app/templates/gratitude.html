@@ -11,7 +11,7 @@
     <p>Gratitude is more than a polite gesture. It is a scientifically-backed tool for well-being. Research shows that practicing gratitude can boost mood, reduce stress, and increase life satisfaction. It activates brain regions linked to positivity and fosters stronger social connections.<br><br> In a busy world, gratitude offers a simple yet impactful way to enhance our mental and emotional health.</p>
 </div>
 
-<h2>Share what you're grateful for with the community</h2>
+<h2 class="fancy">Share what you're grateful for with the community</h2>
 <form class="gratitude_form" method="POST" action="">
     {{ form.hidden_tag() }}
     {% if session['logged_in'] == False %}
@@ -28,9 +28,9 @@
         <div class="gratitude_entry">
             <div class="entry">
                 {{ entry.gratitude }}
-                
+
             </div>
-            <div class="name">{{ entry.name }} - {{ entry.date }}</div>
+            <div class="name">{{ entry.name.capitalize() }} - {{ entry.date }}</div>
             {% if session['user'] == entry.id %}
                 <div class="delete">
                     <a href="{{ url_for('main.delete', key=key) }}">Delete</a>
