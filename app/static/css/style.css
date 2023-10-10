@@ -8,6 +8,7 @@
 }
 
 body {
+    color: #FFFFFF;
     background-image: linear-gradient(#AA43EA, #EE79FF, #5F33FF);
     box-shadow: inset 0 0 20px #662299;
     background-repeat: no-repeat;
@@ -31,6 +32,8 @@ footer {
     font-size: 14px;
     margin-top: 20px;
 }
+
+/* Nav */
 
 nav {
     display: grid;
@@ -60,16 +63,8 @@ nav ul li {
     font-size: 18px;
 }
 
-li {
-    text-decoration: none;
-    list-style: none;
-    
-}
-
-
-a {
-    text-decoration: none;
-    color: #FFFFFF    
+nav ul li a:hover {
+    color: #222222;
 }
 
 .title {
@@ -96,17 +91,48 @@ a {
     justify-self: flex-end;
 }
 
-h1 {
-    padding-left: 50px;
+/* Elements */
+
+li {
+    text-decoration: none;
+    list-style: none;
+    
 }
 
-h2, h3 {
+
+a {
+    text-decoration: none;
+    color: #FFFFFF    
+}
+
+
+h1 {
+    margin-top: 30px;
+    padding-left: 50px;
+    color: #000000;
+    
+
+}
+
+h2, h3, h4 {
     text-align: center;
+    color: #000000;
 }
 
 h2:first-of-type {
     margin-top: 50px;
 }
+
+nav, div, form {
+    -webkit-tap-highlight-color: transparent;
+}
+
+iframe {
+    border-radius: 10px;
+    margin: 20px 20%;
+}
+
+/* General Classes */
 
 .centre {
     text-align: center;
@@ -114,6 +140,14 @@ h2:first-of-type {
     padding-left: 0;
     margin-top: 50px;
     font-size: 50px;
+}
+
+.centre_small {
+    text-align: center;
+    color: #FFFFFF;
+    padding-left: 0;
+    margin-top: 50px;
+    font-size: 30px;
 }
 
 .alert {
@@ -125,55 +159,6 @@ h2:first-of-type {
     text-align: center;
 }
 
-nav, div, form {
-    -webkit-tap-highlight-color: transparent;
-}
-
-
-/* Div Classes */
-
-.images img {
-    height: 100px;
-    border-radius: 180px;
-    transition: all 0.2s ease-in-out;
-
-
-}
-
-.resources {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin: 50px;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-.images {
-    margin: 20px;
-    background-image: linear-gradient(#EE79FF, #AA43EA, #5F33FF);
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-    width: 250px;
-    color: #FFFFFF;
-}
-
-.images p, .images h3 {
-    text-align: center;
-    margin: 10px
-
-}
-
-.images h3 {
-    color: #000000;
-
-}
-
-.images:hover img {
-    height: 110px;
-    transition: all 0.2s ease-in-out;
-}
 
 .reveal {
     transform: translateY(100px);
@@ -185,6 +170,142 @@ nav, div, form {
     transform: translateY(0);
     opacity: 1;
 }
+
+.explanation {
+    margin: 50px 100px;
+    padding: 0 100px;
+    font-size: 17px;
+    text-shadow: #444444 0 0 5px;
+}
+
+.neat-submit-button {
+    background-image: linear-gradient(45deg, #C947F1, #9227F0);
+    border: none;
+    color: #FFFFFF;
+    align-self: center;
+    padding: 5px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: #662299 0 0 4px;
+    font-weight: 600;
+    
+}
+
+
+.neat-submit-button:hover {
+    box-shadow: inset 0 0 5px #662299;
+}
+
+.neat-submit-button:active {
+    transform: translateY(2px);
+}
+
+h2.observe {
+    margin-top: 100px;
+}
+
+
+/* General Forms */
+
+form {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+input {
+    display: inline-block;
+    text-align: center;
+    border-radius: 15px;
+    border: none;
+    padding: 5px; 
+    font-size: 16px;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 0 7px #9227F0;
+    margin-top: 20px;
+    cursor: pointer;
+   
+}
+
+input:focus {
+    background-color: #E1E1E1;
+
+    box-shadow: 
+        0px 0px 8px #000000,
+        inset 0 0 3px #000000;
+}
+
+.form-box {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 30px;
+    background-image: linear-gradient(#EE43FF, #7F33FF);
+    padding: 20px 100px;
+    border-radius: 50px;
+    box-shadow: 0 0 20px 2px #000000;
+    width: 400px;
+}
+
+
+.form-centre {
+    display: flex;
+    justify-content: center;
+}
+
+
+.form_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_form {
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 20px auto; 
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: auto;
+}
+
+.login_form p {
+    color: #000000;
+}
+
+.login_form a {
+    color: #FFFFFF;
+    text-shadow: #000000 0 0 4px;
+}
+
+.login_form a:hover {
+    color: #FFFFFF;
+    text-shadow: #000000 0 0 3px;
+}
+
+.login_form button {
+    margin: 20px 0 30px;
+}
+
+.login_form input {
+    box-shadow: none;
+    border: none;
+    width: 300px;
+    margin: 20px auto;
+    border-top: none;
+}
+
+
+.login_form h2 {
+    margin: 0;
+}
+
 
 /* Index */
 
@@ -198,6 +319,9 @@ nav, div, form {
 }
 
 .smiley {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
     transition: all 3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
@@ -214,6 +338,11 @@ nav, div, form {
     transition: all 3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+.quote p {
+    color: #000000;
+
+}
+
 .quote.initial-size {
     height: 100vh;
     padding: 20px;
@@ -223,6 +352,7 @@ nav, div, form {
 
 .quote.initial-size p {
     padding-top: 70px;
+    
 }
 
 .quote.smaller-size {
@@ -238,12 +368,6 @@ nav, div, form {
     transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-
-.smiley {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
 
 .trio {
     display: flex;
@@ -279,154 +403,7 @@ nav, div, form {
 }
 
 
-
-
-/* Forms */
-
-.form-box {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 30px;
-    background-image: linear-gradient(#EE43FF, #7F33FF);
-    padding: 20px 100px;
-    border-radius: 50px;
-    box-shadow: 0 0 20px 2px #000000;
-    width: 400px;
-
-}
-
-
-
-.form-centre {
-    display: flex;
-    justify-content: center;
-}
-
-form {
-    display: inline-block;
-    text-align: center;
-    padding: 20px 0;
-}
-
-
-input {
-    display: inline-block;
-    text-align: center;
-    border-radius: 15px;
-    border: none;
-    padding: 5px; 
-    font-size: 16px;
-    background-color: #FFFFFF;
-    box-shadow: inset 0 0 7px #9227F0;
-    margin-top: 20px;
-    cursor: pointer;
-   
-}
-
-input:focus {
-    background-color: #E1E1E1;
-
-    box-shadow: 
-        0px 0px 8px #000000,
-        inset 0 0 3px #000000;
-}
-
-.form_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login_form {
-    background-color: rgb(255, 255, 255, 0.6);
-    border-radius: 20px;
-    padding: 40px;
-    margin: 20px auto; 
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    width: auto;
-}
-
-.login_form input {
-    box-shadow: none;
-    border: none;
-    width: 300px;
-    margin: 20px auto;
-    border-top: none;
-}
-
-
-.login_form h2 {
-    margin: 0;
-}
-
-
-/* Relief Form */
-
-.explanation {
-    margin: 50px 100px;
-    padding: 0 100px;
-    font-size: 17px;
-}
-
-.custom-checkbox {
-    display: flex;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-
-}
-
-.custom-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.custom-checkbox input[type="checkbox"]:checked + .custom-checkbox-label, .mood_response input[type="radio"]:checked + label{
-    background-image: linear-gradient(#CC43EF, #9227F0);
-    color: #FFFFFF;
-    box-shadow: 
-        0 0 3px #000000,
-        inset #000000 0px 0px 3px;
-}
-
-.mood input[type="radio"]:checked + label {
-    color: #000000;
-    background-color: #DD43FF;
-
-    box-shadow: 
-        0px 0px 8px 1px #000000,
-        inset 0 0 3px #9227F0;
-}
-
-.relief {
-    display: flex;
-    justify-self: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px 20%;
-    background-image: linear-gradient(rgb(255, 255, 255, 0.6), rgb(255, 255, 255, 0.4));
-    border-radius: 30px;
-    box-shadow: 0 0 20px 3px #000000;
-}
-
-.relief ul {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Index Form */
-
-.mood ul, .mood_response ul {
-    display: flex;
-    justify-content: space-evenly;
-}
+/* Index Forms */
 
 .mood {
     display: flex;
@@ -437,66 +414,6 @@ input:focus {
 .mood input[type="radio"], .mood_response input[type="radio"] {
 
     display: none;
-}
-
-.neg, .pos, .okay, .neg_no, .pos_no, .negative, .positive {
-    display: none;
-}
-
-@keyframes collapse {
-    0% {
-        opacity: 1;
-        max-height: 1000px; /* Set to a high value */
-    }
-    100% {
-        opacity: 0;
-        max-height: 0;
-    }
-}
-
-@keyframes expand {
-    0% {
-        opacity: 0;
-        max-height: 0;
-    }
-    100% {
-        opacity: 1;
-        max-height: 1000px; /* Set to a high value */
-    }
-}
-
-
-.hidden {
-    opacity: 0;
-    max-height: 0;
-    visibility: hidden;
-    overflow: hidden;
-    animation: collapse 1s ease;
-}
-
-.visible {
-    opacity: 1;
-    max-height: 1000px; /* Set to a high value */
-    visibility: visible;
-    animation: expand 1s ease;
-}
-
-#moodForm h2 {
-    padding: 10px 0 30px 0;
-    margin-top: 0;
-}
-
-
-/* Index and Relief Form */
-
-.custom-checkbox-label {
-    display: inline-block;
-    padding: 5px;
-    border-radius: 9px;
-    box-shadow: #222222 0 0 4px;
-    background-image: linear-gradient(rgb(255, 255, 255, 0.3), rgb(230, 230, 230, 0.2));
-    margin: 5px;
-    cursor: pointer;
 }
 
 .mood label {
@@ -513,6 +430,29 @@ input:focus {
 .mood label:hover {
     box-shadow: 0 0 10px #000000;
     transition: all 0.2s ease-in-out;
+}
+
+.mood input[type="radio"]:checked + label {
+    color: #000000;
+    background-color: #DD43FF;
+
+    box-shadow: 
+        0px 0px 8px 1px #000000,
+        inset 0 0 3px #9227F0;
+}
+
+.mood_response input[type="radio"]:checked + label {
+    background-image: linear-gradient(#CC43EF, #9227F0);
+    color: #FFFFFF;
+    box-shadow: 
+        0 0 3px #000000,
+        inset #000000 0px 0px 3px;
+}
+
+
+.mood ul, .mood_response ul {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .mood_response label {
@@ -538,6 +478,13 @@ input:focus {
     flex-direction: column;
 }
 
+#moodForm h2 {
+    padding: 10px 0 30px 0;
+    margin-top: 0;
+
+}
+
+
 #good_label, #okay_label, #bad_label {
     text-shadow: 0 0 5px #000000;
     display: flex;
@@ -560,6 +507,111 @@ input:focus {
     color: #AACCFF;
 }
 
+.neg, .pos, .okay, .neg_no, .pos_no, .negative, .positive {
+    display: none;
+}
+
+@keyframes collapse {
+    0% {
+        opacity: 1;
+        max-height: 1000px; /* Set to a high value */
+    }
+    100% {
+        opacity: 0;
+        max-height: 0;
+    }
+}
+
+@keyframes expand {
+    0% {
+        opacity: 0;
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+
+.hidden {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    animation: collapse .5s ease;
+}
+
+.visible {
+    opacity: 1;
+    max-height: 1000px;
+    visibility: visible;
+    animation: expand 1s ease;
+}
+
+
+
+
+/* Relief */
+
+.relief {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 50px 20%;
+    padding: 0;
+    background-image: linear-gradient(rgb(255, 255, 255, 0.6), rgb(255, 255, 255, 0.4));
+    border-radius: 30px;
+    color: #000000;
+    box-shadow: 0 0 20px 3px #000000;
+}
+
+.relief h2 {
+    font-size: 20px;;
+}
+
+.relief button {
+    margin: 20px 0 0;
+}
+
+
+.relief ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.custom-checkbox {
+    display: flex;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .custom-checkbox-label {
+    background-image: linear-gradient(#CC43EF, #9227F0);
+    color: #FFFFFF;
+    box-shadow: 
+        0 0 3px #000000,
+        inset #000000 0px 0px 3px;
+}
+
+.custom-checkbox-label {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 9px;
+    box-shadow: #222222 0 0 4px;
+    background-image: linear-gradient(rgb(255, 255, 255, 0.3), rgb(230, 230, 230, 0.2));
+    margin: 5px;
+    cursor: pointer;
+}
 
 
 /* Relief Resources */
@@ -596,7 +648,7 @@ input:focus {
 }
 
 .relief_resources:hover h3 {
-    font-size: 24px;
+    font-size: 23px;
     transition: all 0.2s ease-in-out;
 }
 
@@ -650,11 +702,6 @@ input:focus {
     padding: 20px 100px;
 }
 
-iframe {
-    border-radius: 10px;
-    margin: 20px 20%;
-}
-
 .small_video {
     margin: 20px 30%;
 }
@@ -662,7 +709,7 @@ iframe {
 .resource_url h2 {
     padding: 0;
     margin: 0;
-    color: #FFFFFF;
+    color: #000000;
 
 }
 
@@ -710,7 +757,8 @@ iframe {
     flex-direction: column;
     width: 30%;
     margin: 20px 100px;
-    box-shadow: 0 0 10px 5px rgb(0, 0, 0, 0.4)
+    box-shadow: 0 0 10px 5px rgb(0, 0, 0, 0.4);
+    color: #000000;
 }
 
 .gratitude_entry:nth-of-type(2n) {
@@ -736,9 +784,6 @@ iframe {
 }
 
 
-
-
-
 .entry {
     display: flex;
     font-size: 19px;
@@ -748,11 +793,12 @@ iframe {
 
 .name {
     font-size: 15px;
-    
     font-style: italic;
     align-self: flex-end;
     margin-top: auto; /* Push it to the bottom */
     font-size: 15px;
+    color: #9227F0;
+    text-shadow: 0 0 2px #662299;
 }
 
 .delete {
@@ -761,28 +807,55 @@ iframe {
 
 }
 
-.neat-submit-button {
-    background-image: linear-gradient(45deg, #C947F1, #9227F0);
-    border: none;
+.delete a:hover {
+    color: #222222;
+}
+
+
+/* Resources */
+
+.images {
+    margin: 20px;
+    background-image: linear-gradient(#EE79FF, #AA43EA, #5F33FF);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
     color: #FFFFFF;
-    align-self: center;
-    padding: 5px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: #662299 0 0 4px;
-    font-weight: 600;
+}
+
+.images img {
+    height: 100px;
+    border-radius: 180px;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+.images p, .images h3 {
+    text-align: center;
+    margin: 10px
     
 }
 
+.images h3 {
+    color: #FFFFFF;
 
-.neat-submit-button:hover {
-    box-shadow: inset 0 0 5px #662299;
 }
 
-.neat-submit-button:active {
-    transform: translateY(2px);
+.images:hover img {
+    height: 110px;
+    transition: all 0.2s ease-in-out;
 }
 
+.resources {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 50px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
 
 @media screen and (max-width: 1000px) {
@@ -797,7 +870,7 @@ iframe {
     }
 
     
-
+    /* Nav */
 
 
     nav {
@@ -807,6 +880,8 @@ iframe {
         justify-content: space-between;
     }
     
+
+
     nav .links {
         height: 100vh;
         position: fixed;
@@ -889,6 +964,8 @@ iframe {
         font-size: 22px;
     }
 
+    /* Elements */
+
     h1 {
         text-align: center;
         font-size: 45px;
@@ -901,7 +978,60 @@ iframe {
         margin-top: 50px;
         padding: 0 20px;
     }
+    
+    iframe {
+        border-radius: 10px;
+        margin: 20px 20%;
+        height: 200px;
+    }
+    
+    /* General Classes */
 
+    .explanation {
+        margin: 50px;
+        padding: 0 50px;
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .login_form {
+        margin: 30px;
+    }
+
+    .login_form input {
+       
+        width: auto;
+        
+    }
+
+    .centre {
+        
+        font-size: 40px;
+    }
+
+    .centre_small {
+        
+        font-size: 30px;
+    }
+
+    /* General Forms */
+
+    .form-box {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+        background-image: linear-gradient(#EE43FF, #7F33FF);
+        padding: 20px;
+        border-radius: 50px;
+        box-shadow: 0 0 20px 2px #000000;
+        width: 80%;
+    }
+
+
+    .form-box label {
+        margin: 0;
+        padding: 8px;
+    }
 
     /* Index */
     
@@ -954,33 +1084,13 @@ iframe {
         transition: all 0.2s ease-in-out;
     }
 
-    
-
-    .form-box {
-        display: flex;
-        flex-direction: column;
-        margin: 30px;
-        background-image: linear-gradient(#EE43FF, #7F33FF);
-        padding: 20px;
-        border-radius: 50px;
-        box-shadow: 0 0 20px 2px #000000;
-        width: 80%;
+    .mood_response label {
+        padding: 5px 10px;
     }
 
-
-    .form-box label {
-        margin: 0;
-        padding: 8px;
-    }
 
     /* Relief */
 
-    .explanation {
-        margin: 50px;
-        padding: 0 50px;
-        font-size: 17px;
-        text-align: center;
-    }
     
     .relief {
         display: flex;
@@ -1004,10 +1114,7 @@ iframe {
 
 
     }
-
-    
-
-    
+  
 
     .resource_info {
         display: flex;
@@ -1042,11 +1149,6 @@ iframe {
         padding: 20px 50px;
     }
 
-    iframe {
-        border-radius: 10px;
-        margin: 20px 20%;
-        height: 200px;
-    }
 
     .resource_url h2 {
         padding: 0;
@@ -1087,29 +1189,20 @@ iframe {
         transition: all 0.1s ease-in-out;
     }
 
-    .login_form {
-        margin: 30px;
-    }
-
-    .login_form input {
-       
-        width: auto;
-        
-    }
-
-    .centre {
-        
-        font-size: 40px;
-    }
+    
 
     }
 
 @media screen and (max-width: 500px) {
     
+    /* Elements */
+
     h1 {
         text-align: center;
         padding: 0;
     }
+
+    /* Nav */
 
     nav ul li, .login {
         padding: 20px;
@@ -1132,6 +1225,14 @@ iframe {
         margin-right: 0;
     }
 
+    /* General Classes */
+
+    .explanation {
+        margin: 50px 20px;
+        padding: 0 20px;
+        font-size: 17px;
+    }
+
     /* Index */
 
     .smiley.initial-size img {
@@ -1149,8 +1250,6 @@ iframe {
         
     }
 
-   
-
 
     /* Relief */
 
@@ -1163,19 +1262,12 @@ iframe {
     .gratitude_entry {
         width: auto;
         margin: 20px;
+        padding: 20px;
     }
 
     .gratitude_entry:nth-of-type(2n) {
         margin: 20px;
+        padding: 20px
     }
-
-    .explanation {
-        margin: 50px 20px;
-        padding: 0 20px;
-        font-size: 17px;
-    }
-
-
-
 
 }

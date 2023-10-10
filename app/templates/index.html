@@ -51,7 +51,6 @@
     <div class="form-box">
         <form id="moodForm" class="visible" method="POST" action="">
             <h2>How are you feeling?</h2>
-            {{ form.hidden_tag() }}
             <div class="mood">
                 <label id="bad_label">
                     <img src="{{ url_for('static', filename='images/sad.png')}}" height="50px" alt="Sad Face" class="mood_image">
@@ -146,10 +145,10 @@ function negativeSelection(event) {
                 negativeForm.classList.add('hidden');
                 negativeHeading.classList.add('hidden');
                 setTimeout(function () {
-                    form.style.display = 'none'
                     negativeForm.style.display = 'none';
+                    form.style.display = 'none'
                     negativeHeading.style.display = 'none';
-                }, 900); // Match the animation duration
+                }, 400); 
                 negativeResponse();
             }
         }
@@ -162,12 +161,11 @@ function negativeSelection(event) {
 function negativeResponse() {
     var negativeResponse = document.getElementsByClassName('neg_no')[0];
     setTimeout(function () {
-        negativeResponse.classList.add('visible')
         negativeResponse.style.display = 'block';
-        neg
+        negativeResponse.classList.add('visible')
         negativeResponse.style.margin = '0 auto';
 
-    }, 800);
+    }, 300);
 
 }
 
@@ -192,12 +190,12 @@ function okaySelection(event) {
                 okayHeading.classList.remove('visible');
                 negativeForm.classList.add('hidden');
                 okayHeading.classList.add('hidden');
+                negativeResponse();
                 setTimeout(function () {
                     form.style.display = 'none'
                     negativeForm.style.display = 'none';
                     okayHeading.style.display = 'none';
-                }, 900); // Match the animation duration
-                negativeResponse();
+                }, 400);
             }
         }
     });
@@ -206,12 +204,11 @@ function okaySelection(event) {
 function positiveResponse() {
     var positiveResponse = document.getElementsByClassName('pos_no')[0];
     setTimeout(function () {
-        positiveResponse.classList.add('visible')
         positiveResponse.style.display = 'block';
-        neg
+        positiveResponse.classList.add('visible')
         positiveResponse.style.margin = '0 auto';
 
-    }, 800);
+    }, 300);
 }
 
 function positiveSelection(event) {
@@ -239,7 +236,7 @@ function positiveSelection(event) {
                     form.style.display = 'none'
                     positiveForm.style.display = 'none';
                     positiveHeading.style.display = 'none';
-                }, 900); // Match the animation duration
+                }, 400);
                 positiveResponse();
             }
         }

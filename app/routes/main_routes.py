@@ -1,10 +1,28 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from flask_session import Session
-from app.forms import MoodForm, NegativeForm, PositiveForm, Relief, GratitudeForm, LoginForm, ForgotPasswordForm, ResetPasswordForm, RegistrationForm
 from datetime import date
-from . import main_bp
+
+from flask import (
+    render_template,
+    request,
+    redirect,
+    url_for,
+    session,
+    flash
+)
+from flask_session import Session
 import requests
-import random
+
+from app.forms import (
+    NegativeForm,
+    PositiveForm,
+    Relief,
+    GratitudeForm,
+    LoginForm,
+    ForgotPasswordForm,
+    ResetPasswordForm,
+    RegistrationForm
+)
+from . import main_bp 
+
 
 
 response = requests.get("https://zenquotes.io/api/random/")
@@ -42,7 +60,7 @@ resource_list = [
     {
         "id": 1,
         "name": "Breathing Exercises",
-        "symptoms": "tension, shortness of breath, agitation, irritation, restlessness, rumination, worry",
+        "symptoms": "tension, shortness of breath, agitation, worry",
         "url": '<iframe width="60%" height="120px" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/eec2e93f-8375-4958-aae6-faf03c76fc92?dark=false"></iframe>',
         "images": "https://c0.wallpaperflare.com/preview/163/438/524/yoga-pose-peace-zen.jpg",
         "description": "Breathing exercises help the body and mind relax and only take a few minutes. They can be done anywhere and are a great way of soothing stress and anxiety.",
@@ -52,7 +70,7 @@ resource_list = [
     {
         "id": 2,
         "name": "Mindfulness Meditation",
-        "symptoms": "rumination, agitation, irritation, restlessness, worry, sadness",
+        "symptoms": "rumination, agitation, irritation, worry, sadness",
         "url": '<iframe width="60%" height="120px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1045363663&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
         "images": "https://feelgoodpal.com/blog/health-benefits-of-meditation/feature_hua7828a6576614f61d7673755ec2289a2_107633_1200x1200_fill_q100_box_smart1.jpg",
         "description": "Mindfulness meditation fosters present-moment awareness, helping us understand our thoughts and emotions without judgment, promoting inner clarity and calm.",
@@ -63,7 +81,7 @@ resource_list = [
     {
         "id": 3,
         "name": "Mindfulness Body-Scan",
-        "symptoms": "tension, rumination, agitation, irritation, restlessness, worry",
+        "symptoms": "tension, rumination, agitation, irritation, restlessness",
         "url": '<iframe width="60%" height="120px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/712155895&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">',
         "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBtZmeb21b0I747rlirauftr7KNAMlDXNdww&usqp=CAU",
         "description": "Body scan meditation guides us through a gentle exploration of the body, bringing attention to each part. This practice promotes relaxation and heightened bodily awareness.",
@@ -86,7 +104,7 @@ resource_list = [
     {
         "id": 5,
         "name": "Walk",
-        "symptoms": "tension, shortness of breath, agitation, restlessness, worry",
+        "symptoms": "shortness of breath, agitation, restlessness, worry",
         "url": '',
         "images": "https://feelgoodpal.com/blog/can-you-lose-weight-by-walking-an-hour-a-day/feature_huaf75c49c3661eb37ef38a46188171d60_551648_1200x1200_fill_q100_box_smart1.jpg",
         "description": "Walking is a simple yet effective way to reconnect with nature, alleviate tension, and invigorate both body and mind, promoting overall well-being.",
@@ -97,7 +115,7 @@ resource_list = [
     {
         "id": 6,
         "name": "Yoga",
-        "symptoms": "tension, shortness of breath, agitation, irritation, restlessness, worry",
+        "symptoms": "tension, shortness of breath, restlessness",
         "url": '<iframe width="60%" height="350" src="https://www.youtube.com/embed/v7AYKMP6rOE?si=algh5jh6uwLWTbPv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
         "images": "https://www.madisonlibrary.org/sites/default/files/2022-11/yoga.jpg",
         "description": "Yoga combines physical postures, mindful breathing, and meditation to enhance flexibility, strength, and inner peace, fostering a harmonious balance between body and soul.",
@@ -108,7 +126,7 @@ resource_list = [
     {
         "id": 7,
         "name": "Journaling",
-        "symptoms": "agitation, irritation, rumination, worry, sadness",
+        "symptoms": "irritation, rumination, worry, sadness",
         "url": '',
         "images": "https://freerangestock.com/sample/120817/close-up-of-hand-writing-on-a-notebook.jpg",
         "description": "Journaling is a reflective practice that encourages self-expression, emotional processing, and self-discovery, offering a valuable outlet for thoughts and feelings.",
@@ -119,7 +137,7 @@ resource_list = [
     {
         "id": 8,
         "name": "4x4 Breathing",
-        "symptoms": "tension, shortness of breath, agitation, irritation, restlessness, rumination, worry",
+        "symptoms": "tension, shortness of breath, irritation, restlessness",
         "url": '<iframe width="40%" height="280px" class="small_video" src="https://www.youtube.com/embed/bF_1ZiFta-E?si=1QWvdguEyo-gGSDz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
         "images": "https://www.loghouse.ie/wp-content/uploads/2022/01/How-to-build-a-Meditation-room-at-home.jpg",
         "description": "4x4 breathing, also known as box breathing, involves inhaling for 4 seconds, holding for 4 seconds, exhaling for 4 seconds, and pausing for 4 seconds between breaths, promoting relaxation and stress reduction.",
@@ -129,7 +147,7 @@ resource_list = [
     {
         "id": 9,
         "name": "Mindful Colouring",
-        "symptoms": "tension, agitation, irritation, restlessness, rumination, worry, sadness",
+        "symptoms": "agitation, irritation, worry, sadness",
         "url": '',
         "images": "https://www.stockvault.net/data/2016/09/28/211357/preview16.jpg",
         "description": "Mindful colouring is a meditative practice that involves focusing on colouring intricate patterns or images with full attention, helping to calm the mind and reduce stress.",
@@ -139,7 +157,7 @@ resource_list = [
     {
         "id": 10,
         "name": "Read a Book",
-        "symptoms": "agitation, irritation, restlessness, rumination, worry",
+        "symptoms": "rumination, worry",
         "url": '',
         "images": "https://live.staticflickr.com/65535/51097799939_30a167fc22_b.jpg",
         "description": "Reading a book can help you relax, clear your mind, and boost your mood. It can also help you fall asleep quicker.",
@@ -185,7 +203,6 @@ def before_request():
 @main_bp.route("/index", methods=['GET', 'POST'])
 def index():
 
-    form = MoodForm()
     negative_form = NegativeForm()
     positive_form = PositiveForm()
     
@@ -202,7 +219,7 @@ def index():
             print(positive_form.pos_selection.data)
             return redirect(url_for("main.gratitude"))
 
-    return render_template("index.html", form=form, negative_form=negative_form, positive_form=positive_form, quote=quote, author=author, accounts=accounts)
+    return render_template("index.html", negative_form=negative_form, positive_form=positive_form, quote=quote, author=author, accounts=accounts)
 
 
 

@@ -12,7 +12,7 @@
 {% for feeling in selected_feelings %}
 
 
-<h1 class="centre">Resources for {{ feeling }}</h1>
+<h1 class="centre_small">Resources for {{ feeling }}</h1>
 <div class="resources">
     {% for resource in filtered_items %}
         {% if feeling.lower() in resource["symptoms"].lower()%}

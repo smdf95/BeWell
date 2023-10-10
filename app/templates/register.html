@@ -14,7 +14,7 @@
             {{ form.username(placeholder="Username") }}
             {{ form.password(placeholder="Password") }}
             {{ form.password2(placeholder="Confirm Password")}}
-        {{ form.submit }}
+            <button type="submit" class="neat-submit-button">Register</button>
         <p>Already a member? <a href="{{ url_for('main.login') }}">Sign in</a></p>
     </form>
 </div>
