@@ -22,6 +22,7 @@ from app.forms import (
     RegistrationForm
 )
 from . import main_bp 
+from urllib.parse import urlparse
 
 
 
@@ -185,7 +186,7 @@ gratitude_journal = {
         "id": 1,
         "date": "20/09",
         "name": "shane",
-        "gratitude": "I am grateful for the sunny weather!",
+        "gratitude": "I'm grateful for my delicious morning coffee",
     }
 }
 
@@ -195,7 +196,20 @@ filtered_items = []
 @main_bp.before_request
 def before_request():
     
-    """Checks whether user is logged in. If not, it will set the variables to logged out"""
+    # Set's no_previous_page to true if user is on login or register page. This prevents the previous_page from storing login or register page, so that the user is redirected to the correct previous page even if they were switch between the login and register page.
+
+    current_page = request.url
+    parsed_url = urlparse(current_page)
+    route = parsed_url.path
+    print("Current Page is", route)
+
+    if route == '/login' or route == '/register':
+        session['no_previous_page'] = True
+    else:
+        session['no_previous_page'] = False
+
+
+    # Checks whether user is logged in. If not, it will set the variables to logged out.
 
     username = session.get('user')
 

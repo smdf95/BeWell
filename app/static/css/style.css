@@ -76,9 +76,8 @@ nav ul li a:hover {
 }
 
 .links {
-    display: flex;
-    text-align: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .menu {
@@ -341,6 +340,8 @@ input:focus {
     }
 }
 
+
+
 .smiley {
     display: flex;
     justify-content: center;
@@ -359,6 +360,7 @@ input:focus {
 
 .quote {
     transition: all 3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    margin-bottom: 50px;
 }
 
 .quote p {
@@ -720,7 +722,7 @@ input:focus {
 
 .resource_url {
     border-radius: 20px;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(200, 200, 200, 0.2));
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(200, 200, 200, 0.3));
     margin: 30px 100px;
     padding: 20px 100px;
 }
@@ -739,33 +741,19 @@ input:focus {
 .resource_url ul li {
     padding: 20px 0;
     color: #FFFFFF;
+    text-shadow: #666666 0 0 5px;
 }
 
 .resource_url ul li a {
-    color: #EE43FF;
-    text-shadow:
-        0.05em 0 2px #662299,
-        0 0.05em 2px #662299,
-        -0.05em 0 2px #662299,
-        0 -0.05em 2px #662299,
-        -0.05em -0.05em 2px #662299,
-        -0.05em 0.05em 2px #662299,
-        0.05em -0.05em 2px #662299,
-        0.05em 0.05em 2px #662299;
-    font-weight: 500;
+    color: #7b05b7;
+    font-weight: 600;
+    text-shadow: none;
+    text-decoration: underline transparent;
     transition: all 0.2s ease-in-out;
 }
 .resource_url ul li a:hover {
-    text-shadow:
-        0.05em 0 4px #662299,
-        0 0.05em 4px #662299,
-        -0.05em 0 4px #662299,
-        0 -0.05em 4px #662299,
-        -0.05em -0.05em 4px #662299,
-        -0.05em 0.05em 4px #662299,
-        0.05em -0.05em 4px #662299,
-        0.05em 0.05em 4px #662299;
-    transition: all 0.1s ease-in-out;
+    text-decoration: underline #7b05b7;
+    transition: all 0.2s ease-in-out;
 }
 
 /* Gratitude */
@@ -821,7 +809,6 @@ input:focus {
     margin-top: auto; /* Push it to the bottom */
     font-size: 15px;
     color: #9227F0;
-    text-shadow: 0 0 2px #662299;
 }
 
 .delete {
@@ -879,6 +866,12 @@ input:focus {
     flex-wrap: wrap;
     flex-direction: row;
 }
+
+.resources h3 {
+    text-shadow: #444444 0 0 4px;
+}
+
+
 
 
 @media screen and (max-width: 1000px) {
@@ -1185,32 +1178,7 @@ input:focus {
         color: #FFFFFF;
     }
 
-    .resource_url ul li a {
-        color: #EE43FF;
-        text-shadow:
-            0.05em 0 2px #662299,
-            0 0.05em 2px #662299,
-            -0.05em 0 2px #662299,
-            0 -0.05em 2px #662299,
-            -0.05em -0.05em 2px #662299,
-            -0.05em 0.05em 2px #662299,
-            0.05em -0.05em 2px #662299,
-            0.05em 0.05em 2px #662299;
-        font-weight: 500;
-        transition: all 0.2s ease-in-out;
-    }
-    .resource_url ul li a:hover {
-        text-shadow:
-            0.05em 0 4px #662299,
-            0 0.05em 4px #662299,
-            -0.05em 0 4px #662299,
-            0 -0.05em 4px #662299,
-            -0.05em -0.05em 4px #662299,
-            -0.05em 0.05em 4px #662299,
-            0.05em -0.05em 4px #662299,
-            0.05em 0.05em 4px #662299;
-        transition: all 0.1s ease-in-out;
-    }
+ 
 
     
 
@@ -1294,3 +1262,4 @@ input:focus {
     }
 
 }
+

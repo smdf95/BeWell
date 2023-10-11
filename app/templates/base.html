@@ -42,8 +42,21 @@
                         <li><a href="{{ url_for('main.redirect_logout') }}">Logout</a></li>
 
                     {% else%}
-                        <li><a href="{{ url_for('main.login', previous_page=request.url) }}">Login</a></li>
-                        <li><a href="{{ url_for('main.register', previous_page=request.url) }}">Register</a></li>
+                      
+                        
+
+
+                        {% if session['no_previous_page'] %}
+
+                            <li><a href="{{ url_for('main.login', previous_page=session['previous_page']) }}">Login</a></li>
+                            <li><a href="{{ url_for('main.register', previous_page=session['previous_page']) }}">Register</a></li>
+
+                        {% else %}
+
+                            <li><a href="{{ url_for('main.login', previous_page=request.url) }}">Login</a></li>
+                            <li><a href="{{ url_for('main.register', previous_page=request.url) }}">Register</a></li>
+
+                        {% endif %}
                     {% endif %}
                 </ul>
             </div>
